@@ -187,6 +187,7 @@ function provisionlaravelmodule_CreateAccount(array $params)
         //     ...
         // )
         // ```
+        print($params["clientsdetails"]["email"]);
     } catch (Exception $e) {
         // Record the error in WHMCS's module log.
         logModuleCall(
