@@ -17,7 +17,7 @@
 class WHMCSModuleTest extends \PHPUnit\Framework\TestCase
 {
     /** @var string $moduleName */
-    protected $moduleName = 'provisionlaravelmodule';
+    protected $moduleName = 'instructinginteraction';
 
     /**
      * Asserts the required config options function is defined.

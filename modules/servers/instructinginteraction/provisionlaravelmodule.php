@@ -15,7 +15,7 @@
  *
  * Within the module itself, all functions must be prefixed with the module
  * filename, followed by an underscore, and then the function name. For this
- * example file, the filename is "provisionlaravelmodule" and therefore all
+ * example file, the filename is "instructinginteraction" and therefore all
  * functions begin "provisionlaravelmodule_".
  *
  * If your module or third party API does not support a given function, you
@@ -190,7 +190,7 @@ function provisionlaravelmodule_CreateAccount(array $params)
     } catch (Exception $e) {
         // Record the error in WHMCS's module log.
         logModuleCall(
-            'provisionlaravelmodule',
+            'instructinginteraction',
             __FUNCTION__,
             $params,
             $e->getMessage(),
@@ -224,7 +224,7 @@ function provisionlaravelmodule_SuspendAccount(array $params)
     } catch (Exception $e) {
         // Record the error in WHMCS's module log.
         logModuleCall(
-            'provisionlaravelmodule',
+            'instructinginteraction',
             __FUNCTION__,
             $params,
             $e->getMessage(),
@@ -258,7 +258,7 @@ function provisionlaravelmodule_UnsuspendAccount(array $params)
     } catch (Exception $e) {
         // Record the error in WHMCS's module log.
         logModuleCall(
-            'provisionlaravelmodule',
+            'instructinginteraction',
             __FUNCTION__,
             $params,
             $e->getMessage(),
@@ -291,7 +291,7 @@ function provisionlaravelmodule_TerminateAccount(array $params)
     } catch (Exception $e) {
         // Record the error in WHMCS's module log.
         logModuleCall(
-            'provisionlaravelmodule',
+            'instructinginteraction',
             __FUNCTION__,
             $params,
             $e->getMessage(),
@@ -337,7 +337,7 @@ function provisionlaravelmodule_ChangePassword(array $params)
     } catch (Exception $e) {
         // Record the error in WHMCS's module log.
         logModuleCall(
-            'provisionlaravelmodule',
+            'instructinginteraction',
             __FUNCTION__,
             $params,
             $e->getMessage(),
@@ -384,7 +384,7 @@ function provisionlaravelmodule_ChangePackage(array $params)
     } catch (Exception $e) {
         // Record the error in WHMCS's module log.
         logModuleCall(
-            'provisionlaravelmodule',
+            'instructinginteraction',
             __FUNCTION__,
             $params,
             $e->getMessage(),
@@ -431,7 +431,7 @@ function provisionlaravelmodule_Renew(array $params)
     } catch (Exception $e) {
         // Record the error in WHMCS's module log.
         logModuleCall(
-            'provisionlaravelmodule',
+            'instructinginteraction',
             __FUNCTION__,
             $params,
             $e->getMessage(),
@@ -471,7 +471,7 @@ function provisionlaravelmodule_TestConnection(array $params)
     } catch (Exception $e) {
         // Record the error in WHMCS's module log.
         logModuleCall(
-            'provisionlaravelmodule',
+            'instructinginteraction',
             __FUNCTION__,
             $params,
             $e->getMessage(),
@@ -548,7 +548,7 @@ function provisionlaravelmodule_buttonOneFunction(array $params)
     } catch (Exception $e) {
         // Record the error in WHMCS's module log.
         logModuleCall(
-            'provisionlaravelmodule',
+            'instructinginteraction',
             __FUNCTION__,
             $params,
             $e->getMessage(),
@@ -584,7 +584,7 @@ function provisionlaravelmodule_actionOneFunction(array $params)
     } catch (Exception $e) {
         // Record the error in WHMCS's module log.
         logModuleCall(
-            'provisionlaravelmodule',
+            'instructinginteraction',
             __FUNCTION__,
             $params,
             $e->getMessage(),
@@ -633,7 +633,7 @@ function provisionlaravelmodule_AdminServicesTabFields(array $params)
     } catch (Exception $e) {
         // Record the error in WHMCS's module log.
         logModuleCall(
-            'provisionlaravelmodule',
+            'instructinginteraction',
             __FUNCTION__,
             $params,
             $e->getMessage(),
@@ -679,7 +679,7 @@ function provisionlaravelmodule_AdminServicesTabFieldsSave(array $params)
         } catch (Exception $e) {
             // Record the error in WHMCS's module log.
             logModuleCall(
-                'provisionlaravelmodule',
+                'instructinginteraction',
                 __FUNCTION__,
                 $params,
                 $e->getMessage(),
@@ -718,7 +718,7 @@ function provisionlaravelmodule_ServiceSingleSignOn(array $params)
     } catch (Exception $e) {
         // Record the error in WHMCS's module log.
         logModuleCall(
-            'provisionlaravelmodule',
+            'instructinginteraction',
             __FUNCTION__,
             $params,
             $e->getMessage(),
@@ -763,7 +763,7 @@ function provisionlaravelmodule_AdminSingleSignOn(array $params)
     } catch (Exception $e) {
         // Record the error in WHMCS's module log.
         logModuleCall(
-            'provisionlaravelmodule',
+            'instructinginteraction',
             __FUNCTION__,
             $params,
             $e->getMessage(),
@@ -839,7 +839,7 @@ function provisionlaravelmodule_ClientArea(array $params)
     } catch (Exception $e) {
         // Record the error in WHMCS's module log.
         logModuleCall(
-            'provisionlaravelmodule',
+            'instructinginteraction',
             __FUNCTION__,
             $params,
             $e->getMessage(),
