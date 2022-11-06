@@ -39,6 +39,8 @@ function original_api_call($connection_url, $headers, $params, $request_method_t
 
     if (curl_error($ch)) {
         die('Unable to connect: ' . curl_errno($ch) . ' - ' . curl_error($ch));
+    } elseif (empty($response)) {
+        throw new Exception('Empty response');
     }
 
     curl_close($ch);
