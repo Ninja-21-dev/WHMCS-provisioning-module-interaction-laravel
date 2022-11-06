@@ -3,21 +3,38 @@
  * send_request.php is created by Hadesson
  *
  */
-require_once __DIR__ . '/constants/database_const.php';
+require_once __DIR__ . '/constants/api_const.php';
+//require_once __DIR__ . '/constants/request_const.php';
 
-function original_api_call($connection_url, $headers, $params)
+function original_api_call($connection_url, $headers, $params, $request_method_type)
 {
+    global $POST_REQUEST_METHOD, $GET_REQUEST_METHOD, $PUT_REQUEST_METHOD;
     // Call the API
     $ch = curl_init();
 
-    curl_setopt($ch, CURLOPT_URL, $connection_url);
-    curl_setopt($ch, CURLOPT_POST, 1);
+    if($request_method_type == $GET_REQUEST_METHOD)
+    {
+        curl_setopt($ch, CURLOPT_URL, $connection_url . '?' . http_build_query($params));
+    }
+    else if($request_method_type == $POST_REQUEST_METHOD)
+    {
+        curl_setopt($ch, CURLOPT_URL, $connection_url);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
+    }
+    else if($request_method_type == $PUT_REQUEST_METHOD)
+    {
+        curl_setopt($ch, CURLOPT_URL, $connection_url);
+//        curl_setopt($ch, CURLOPT_PUT, 1);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
+
+    }
     curl_setopt($ch, CURLOPT_TIMEOUT, 30);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-//    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);
-//    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
 
     $response = curl_exec($ch);
 
@@ -31,8 +48,7 @@ function original_api_call($connection_url, $headers, $params)
     return json_decode($response, true);
 }
 
-
-//call
+// API call to login the site
 function login_api_call($domain_url,
                         $email,
                         $pwd)
@@ -53,11 +69,11 @@ function login_api_call($domain_url,
         'Accept: Application/json'
     );
 
+    global $POST_REQUEST_METHOD;
     // Get decoded http response
-    $jsonData = original_api_call($connection_url, $postheaders, $postfields);
+    $jsonData = original_api_call($connection_url, $postheaders, $postfields, $POST_REQUEST_METHOD);
 
-
-//    return json_encode($jsonData[$access_token]);
+    print(" this result: " . $jsonData[$access_token] . PHP_EOL);
     return $jsonData[$access_token];
 }
 
@@ -65,23 +81,12 @@ function login_api_call($domain_url,
 // API call to create a new user
 function create_user_api_call($domain_url,
                               $token,
-                              $email,
-                              $name,
-                              $pwd,
-                              $status,
-                              $roles)
+                              array $params)
 {
     $connection_url = $domain_url . "/api/v1/users";
 
     // Set post values
-    $postfields = array(
-        'email' => $email,
-        'name' => $name,
-        'password' => $pwd,
-        'status' => $status,
-        'roles' => $roles,
-    );
-    print(json_encode($roles));
+    $create_info = $params;
 
     // Set Http Request Headers
     $postheaders = array(
@@ -89,38 +94,122 @@ function create_user_api_call($domain_url,
         'Authorization:Bearer ' . $token
     );
 
+    global $POST_REQUEST_METHOD;
     // Get decoded http response
-    $jsonData = original_api_call($connection_url, $postheaders, $postfields);
+    $jsonData = original_api_call($connection_url, $postheaders, $create_info, $POST_REQUEST_METHOD);
 
     // Print array structure for inspection
-    print(json_encode($jsonData));
+    print(json_encode($jsonData) . PHP_EOL);
 
     return $jsonData;
 }
 
-$base_url = "https://onboardingdemo.stuffsleuth.com";
-$test_email = "admin@admin.com";
-$test_pwd = "password";
+// API call to update a new user
+function update_user_api_call($domain_url,
+                              $token,
+                              array $params)
+{
+    global $USER_DB_ID, $USER_DB_ROLES, $ROLE_DB_ID;
+    $connection_url = $domain_url . "/api/v1/users" . '/' . $params[$USER_DB_ID];
 
+    $user_ids = array ();
+    $id_count = 0;
+    foreach($params[$USER_DB_ROLES] as $user_role){
+        $user_ids[ $id_count++ ] = $user_role[$ROLE_DB_ID];
+    }
+    print(json_encode($user_ids));
+
+
+    // Set Updated User Info
+    $update_info = $params;
+    $update_info[$USER_DB_ROLES] = $user_ids;
+
+    // Set Http Request Headers
+    $httpheaders = array(
+        'Accept:Application/json',
+        'Authorization:Bearer ' . $token
+    );
+
+    global $PUT_REQUEST_METHOD;
+    // Get decoded http response
+    $jsonData = original_api_call($connection_url, $httpheaders, $update_info, $PUT_REQUEST_METHOD);
+
+    // Print array structure for inspection
+    print(json_encode($jsonData) . PHP_EOL);
+
+    return $jsonData;
+}
+
+// API call to get all users
+function get_users_api_call($domain_url,
+                            $token)
+{
+    $connection_url = $domain_url . "/api/v1/users";
+
+    // Set post values
+    $postfields = array();
+
+    // Set Http Request Headers
+    $postheaders = array(
+        'Accept:Application/json',
+        'Authorization:Bearer ' . $token
+    );
+
+    global $GET_REQUEST_METHOD;
+    // Get decoded http response
+    $jsonData = original_api_call($connection_url, $postheaders, $postfields, $GET_REQUEST_METHOD);
+
+    // Print array structure for inspection
+    global $DATA_JSON_KEY;
+    print(json_encode($jsonData[$DATA_JSON_KEY]) . PHP_EOL);
+
+    return $jsonData[$DATA_JSON_KEY];
+}
+
+
+
+global $BASE_URL, $ADMIN_EMAIL, $ADMIN_PWD;
+$base_url = $BASE_URL;
+$test_email = $ADMIN_EMAIL;
+$test_pwd = $ADMIN_PWD;
+
+// get token
 $token = login_api_call($base_url, $test_email, $test_pwd);
-print(" this result: " . $token);
 
-$test_user = "test_user_2";
+// mock data
+$test_user = "test_user_4";
 $test_fields = array(
-    $user_db_email => $test_user . "@gamil.com",
-    $user_db_name => $test_user,
-    $user_db_pwd => $test_user,
-    $user_db_status => "status",
-//    $user_db_roles => [],
-    $user_db_roles => array(1),
+    $USER_DB_EMAIL => $test_user . "@gamil.com",
+    $USER_DB_NAME => $test_user,
+    $USER_DB_PWD => $test_user,
+    $USER_DB_STATUS => "status",
+    $USER_DB_ROLES => array(1), //[1]
 );
 
-create_user_api_call(
+$new_user = create_user_api_call(
     $base_url,
     $token,
-    $test_fields[$user_db_email],
-    $test_fields[$user_db_name],
-    $test_fields[$user_db_pwd],
-    $test_fields[$user_db_status],
-    $test_fields[$user_db_roles]
+    $test_fields
 );
+
+$users = get_users_api_call(
+    $base_url,
+    $token
+);
+
+$user_count = count($users);
+$last_user = $users[$user_count - 1];
+$last_user[$USER_DB_STATUS] = 'updated status';
+
+print("last user" . PHP_EOL);
+print(json_encode($last_user) . PHP_EOL);
+
+
+$updated_user = update_user_api_call(
+    $base_url,
+    $token,
+    $last_user
+);
+
+print("updated user" . PHP_EOL);
+print(json_encode($updated_user) . PHP_EOL);
