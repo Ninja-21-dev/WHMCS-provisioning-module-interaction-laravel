@@ -35,6 +35,7 @@ $TEAM_DB_NAME = "name";
 $TEAM_DB_OWNER_ID = "owner_id";
 $TEAM_DB_OWNER = "owner";
 
-
+$URL_USER_MAIN_PATH = "/api/v1/users";
+$URL_TEAM_MAIN_PATH = "/api/v1/teams";
 
 $DATA_JSON_KEY = "data";
