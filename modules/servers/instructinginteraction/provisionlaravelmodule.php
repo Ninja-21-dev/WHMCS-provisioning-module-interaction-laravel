@@ -15,8 +15,8 @@
  *
  * Within the module itself, all functions must be prefixed with the module
  * filename, followed by an underscore, and then the function name. For this
- * example file, the filename is "provisioningmodule" and therefore all
- * functions begin "provisioningmodule_".
+ * example file, the filename is "instructinginteraction" and therefore all
+ * functions begin "provisionlaravelmodule_".
  *
  * If your module or third party API does not support a given function, you
  * should not define that function within your module. Only the _ConfigOptions
@@ -38,6 +38,7 @@ if (!defined("WHMCS")) {
 // require_once __DIR__ . '/path/to/library/loader.php';
 //
 // Also, perform any initialization required by the service's library.
+require_once __DIR__ . '/lib/loader.php';
 
 /**
  * Define module related meta data.
@@ -49,7 +50,7 @@ if (!defined("WHMCS")) {
  *
  * @return array
  */
-function provisioningmodule_MetaData()
+function provisionlaravelmodule_MetaData()
 {
     return array(
         'DisplayName' => 'Demo Provisioning Module',
@@ -85,7 +86,7 @@ function provisioningmodule_MetaData()
  *
  * @return array
  */
-function provisioningmodule_ConfigOptions()
+function provisionlaravelmodule_ConfigOptions()
 {
     return array(
         // a text field type allows for single line text input
@@ -95,6 +96,7 @@ function provisioningmodule_ConfigOptions()
             'Default' => '1024',
             'Description' => 'Enter in megabytes',
         ),
+
         // a password field type allows for masked text input
         'Password Field' => array(
             'Type' => 'password',
@@ -102,11 +104,13 @@ function provisioningmodule_ConfigOptions()
             'Default' => '',
             'Description' => 'Enter secret value here',
         ),
+
         // the yesno field type displays a single checkbox option
         'Checkbox Field' => array(
             'Type' => 'yesno',
             'Description' => 'Tick to enable',
         ),
+
         // the dropdown field type renders a select menu of options
         'Dropdown Field' => array(
             'Type' => 'dropdown',
@@ -117,12 +121,14 @@ function provisioningmodule_ConfigOptions()
             ),
             'Description' => 'Choose one',
         ),
+
         // the radio field type displays a series of radio button options
         'Radio Field' => array(
             'Type' => 'radio',
             'Options' => 'First Option,Second Option,Third Option',
             'Description' => 'Choose your option!',
         ),
+
         // the textarea field type allows for multi-line text input
         'Textarea Field' => array(
             'Type' => 'textarea',
@@ -130,6 +136,19 @@ function provisioningmodule_ConfigOptions()
             'Cols' => '60',
             'Description' => 'Freeform multi-line text input field',
         ),
+
+        //Enable Simple Configuration Mode for this module
+        'Simple Mode Field' => array(
+            'Type' => 'text',
+            'Size' => '25',
+            'SimpleMode' => true,
+        ),
+
+        //Enable Advanced Configuration Mode for this module
+        'Advanced Mode Field' => [
+            'Type' => 'text',
+            'Size' => '25',
+        ],
     );
 }
 
@@ -149,7 +168,7 @@ function provisioningmodule_ConfigOptions()
  *
  * @return string "success" or an error message
  */
-function provisioningmodule_CreateAccount(array $params)
+function provisionlaravelmodule_CreateAccount(array $params)
 {
     try {
         // Call the service's provisioning function, using the values provided
@@ -168,10 +187,11 @@ function provisioningmodule_CreateAccount(array $params)
         //     ...
         // )
         // ```
+        print($params["clientsdetails"]["email"]);
     } catch (Exception $e) {
         // Record the error in WHMCS's module log.
         logModuleCall(
-            'provisioningmodule',
+            'instructinginteraction',
             __FUNCTION__,
             $params,
             $e->getMessage(),
@@ -197,7 +217,7 @@ function provisioningmodule_CreateAccount(array $params)
  *
  * @return string "success" or an error message
  */
-function provisioningmodule_SuspendAccount(array $params)
+function provisionlaravelmodule_SuspendAccount(array $params)
 {
     try {
         // Call the service's suspend function, using the values provided by
@@ -205,7 +225,7 @@ function provisioningmodule_SuspendAccount(array $params)
     } catch (Exception $e) {
         // Record the error in WHMCS's module log.
         logModuleCall(
-            'provisioningmodule',
+            'instructinginteraction',
             __FUNCTION__,
             $params,
             $e->getMessage(),
@@ -231,7 +251,7 @@ function provisioningmodule_SuspendAccount(array $params)
  *
  * @return string "success" or an error message
  */
-function provisioningmodule_UnsuspendAccount(array $params)
+function provisionlaravelmodule_UnsuspendAccount(array $params)
 {
     try {
         // Call the service's unsuspend function, using the values provided by
@@ -239,7 +259,7 @@ function provisioningmodule_UnsuspendAccount(array $params)
     } catch (Exception $e) {
         // Record the error in WHMCS's module log.
         logModuleCall(
-            'provisioningmodule',
+            'instructinginteraction',
             __FUNCTION__,
             $params,
             $e->getMessage(),
@@ -264,7 +284,7 @@ function provisioningmodule_UnsuspendAccount(array $params)
  *
  * @return string "success" or an error message
  */
-function provisioningmodule_TerminateAccount(array $params)
+function provisionlaravelmodule_TerminateAccount(array $params)
 {
     try {
         // Call the service's terminate function, using the values provided by
@@ -272,7 +292,7 @@ function provisioningmodule_TerminateAccount(array $params)
     } catch (Exception $e) {
         // Record the error in WHMCS's module log.
         logModuleCall(
-            'provisioningmodule',
+            'instructinginteraction',
             __FUNCTION__,
             $params,
             $e->getMessage(),
@@ -301,7 +321,7 @@ function provisioningmodule_TerminateAccount(array $params)
  *
  * @return string "success" or an error message
  */
-function provisioningmodule_ChangePassword(array $params)
+function provisionlaravelmodule_ChangePassword(array $params)
 {
     try {
         // Call the service's change password function, using the values
@@ -318,7 +338,7 @@ function provisioningmodule_ChangePassword(array $params)
     } catch (Exception $e) {
         // Record the error in WHMCS's module log.
         logModuleCall(
-            'provisioningmodule',
+            'instructinginteraction',
             __FUNCTION__,
             $params,
             $e->getMessage(),
@@ -347,7 +367,7 @@ function provisioningmodule_ChangePassword(array $params)
  *
  * @return string "success" or an error message
  */
-function provisioningmodule_ChangePackage(array $params)
+function provisionlaravelmodule_ChangePackage(array $params)
 {
     try {
         // Call the service's change password function, using the values
@@ -365,7 +385,7 @@ function provisioningmodule_ChangePackage(array $params)
     } catch (Exception $e) {
         // Record the error in WHMCS's module log.
         logModuleCall(
-            'provisioningmodule',
+            'instructinginteraction',
             __FUNCTION__,
             $params,
             $e->getMessage(),
@@ -390,7 +410,7 @@ function provisioningmodule_ChangePackage(array $params)
  *
  * @return string "success" or an error message
  */
-function provisioningmodule_Renew(array $params)
+function provisionlaravelmodule_Renew(array $params)
 {
     try {
         // Call the service's provisioning function, using the values provided
@@ -412,7 +432,7 @@ function provisioningmodule_Renew(array $params)
     } catch (Exception $e) {
         // Record the error in WHMCS's module log.
         logModuleCall(
-            'provisioningmodule',
+            'instructinginteraction',
             __FUNCTION__,
             $params,
             $e->getMessage(),
@@ -442,7 +462,7 @@ function provisioningmodule_Renew(array $params)
  *
  * @return array
  */
-function provisioningmodule_TestConnection(array $params)
+function provisionlaravelmodule_TestConnection(array $params)
 {
     try {
         // Call the service's connection test function.
@@ -452,7 +472,7 @@ function provisioningmodule_TestConnection(array $params)
     } catch (Exception $e) {
         // Record the error in WHMCS's module log.
         logModuleCall(
-            'provisioningmodule',
+            'instructinginteraction',
             __FUNCTION__,
             $params,
             $e->getMessage(),
@@ -475,11 +495,11 @@ function provisioningmodule_TestConnection(array $params)
  * Define additional actions that an admin user can perform for an
  * instance of a product/service.
  *
- * @see provisioningmodule_buttonOneFunction()
+ * @see provisionlaravelmodule_buttonOneFunction()
  *
  * @return array
  */
-function provisioningmodule_AdminCustomButtonArray()
+function provisionlaravelmodule_AdminCustomButtonArray()
 {
     return array(
         "Button 1 Display Value" => "buttonOneFunction",
@@ -498,7 +518,7 @@ function provisioningmodule_AdminCustomButtonArray()
  *
  * @return array
  */
-function provisioningmodule_ClientAreaCustomButtonArray()
+function provisionlaravelmodule_ClientAreaCustomButtonArray()
 {
     return array(
         "Action 1 Display Value" => "actionOneFunction",
@@ -517,11 +537,11 @@ function provisioningmodule_ClientAreaCustomButtonArray()
  * @param array $params common module parameters
  *
  * @see https://developers.whmcs.com/provisioning-modules/module-parameters/
- * @see provisioningmodule_AdminCustomButtonArray()
+ * @see provisionlaravelmodule_AdminCustomButtonArray()
  *
  * @return string "success" or an error message
  */
-function provisioningmodule_buttonOneFunction(array $params)
+function provisionlaravelmodule_buttonOneFunction(array $params)
 {
     try {
         // Call the service's function, using the values provided by WHMCS in
@@ -529,7 +549,7 @@ function provisioningmodule_buttonOneFunction(array $params)
     } catch (Exception $e) {
         // Record the error in WHMCS's module log.
         logModuleCall(
-            'provisioningmodule',
+            'instructinginteraction',
             __FUNCTION__,
             $params,
             $e->getMessage(),
@@ -553,11 +573,11 @@ function provisioningmodule_buttonOneFunction(array $params)
  * @param array $params common module parameters
  *
  * @see https://developers.whmcs.com/provisioning-modules/module-parameters/
- * @see provisioningmodule_ClientAreaCustomButtonArray()
+ * @see provisionlaravelmodule_ClientAreaCustomButtonArray()
  *
  * @return string "success" or an error message
  */
-function provisioningmodule_actionOneFunction(array $params)
+function provisionlaravelmodule_actionOneFunction(array $params)
 {
     try {
         // Call the service's function, using the values provided by WHMCS in
@@ -565,7 +585,7 @@ function provisioningmodule_actionOneFunction(array $params)
     } catch (Exception $e) {
         // Record the error in WHMCS's module log.
         logModuleCall(
-            'provisioningmodule',
+            'instructinginteraction',
             __FUNCTION__,
             $params,
             $e->getMessage(),
@@ -590,11 +610,11 @@ function provisioningmodule_actionOneFunction(array $params)
  * @param array $params common module parameters
  *
  * @see https://developers.whmcs.com/provisioning-modules/module-parameters/
- * @see provisioningmodule_AdminServicesTabFieldsSave()
+ * @see provisionlaravelmodule_AdminServicesTabFieldsSave()
  *
  * @return array
  */
-function provisioningmodule_AdminServicesTabFields(array $params)
+function provisionlaravelmodule_AdminServicesTabFields(array $params)
 {
     try {
         // Call the service's function, using the values provided by WHMCS in
@@ -606,22 +626,22 @@ function provisioningmodule_AdminServicesTabFields(array $params)
             'Number of Apples' => (int) $response['numApples'],
             'Number of Oranges' => (int) $response['numOranges'],
             'Last Access Date' => date("Y-m-d H:i:s", $response['lastLoginTimestamp']),
-            'Something Editable' => '<input type="hidden" name="provisioningmodule_original_uniquefieldname" '
+            'Something Editable' => '<input type="hidden" name="provisionlaravelmodule_original_uniquefieldname" '
                 . 'value="' . htmlspecialchars($response['textvalue']) . '" />'
-                . '<input type="text" name="provisioningmodule_uniquefieldname"'
+                . '<input type="text" name="provisionlaravelmodule_uniquefieldname"'
                 . 'value="' . htmlspecialchars($response['textvalue']) . '" />',
         );
     } catch (Exception $e) {
         // Record the error in WHMCS's module log.
         logModuleCall(
-            'provisioningmodule',
+            'instructinginteraction',
             __FUNCTION__,
             $params,
             $e->getMessage(),
             $e->getTraceAsString()
         );
 
-        // In an error condition, simply return no additional fields to display.
+        // In an error condition, simpprovisionlaravelmodule_ConfigOptionsly return no additional fields to display.
     }
 
     return array();
@@ -639,17 +659,17 @@ function provisioningmodule_AdminServicesTabFields(array $params)
  * @param array $params common module parameters
  *
  * @see https://developers.whmcs.com/provisioning-modules/module-parameters/
- * @see provisioningmodule_AdminServicesTabFields()
+ * @see provisionlaravelmodule_AdminServicesTabFields()
  */
-function provisioningmodule_AdminServicesTabFieldsSave(array $params)
+function provisionlaravelmodule_AdminServicesTabFieldsSave(array $params)
 {
     // Fetch form submission variables.
-    $originalFieldValue = isset($_REQUEST['provisioningmodule_original_uniquefieldname'])
-        ? $_REQUEST['provisioningmodule_original_uniquefieldname']
+    $originalFieldValue = isset($_REQUEST['provisionlaravelmodule_original_uniquefieldname'])
+        ? $_REQUEST['provisionlaravelmodule_original_uniquefieldname']
         : '';
 
-    $newFieldValue = isset($_REQUEST['provisioningmodule_uniquefieldname'])
-        ? $_REQUEST['provisioningmodule_uniquefieldname']
+    $newFieldValue = isset($_REQUEST['provisionlaravelmodule_uniquefieldname'])
+        ? $_REQUEST['provisionlaravelmodule_uniquefieldname']
         : '';
 
     // Look for a change in value to avoid making unnecessary service calls.
@@ -660,7 +680,7 @@ function provisioningmodule_AdminServicesTabFieldsSave(array $params)
         } catch (Exception $e) {
             // Record the error in WHMCS's module log.
             logModuleCall(
-                'provisioningmodule',
+                'instructinginteraction',
                 __FUNCTION__,
                 $params,
                 $e->getMessage(),
@@ -685,7 +705,7 @@ function provisioningmodule_AdminServicesTabFieldsSave(array $params)
  *
  * @return array
  */
-function provisioningmodule_ServiceSingleSignOn(array $params)
+function provisionlaravelmodule_ServiceSingleSignOn(array $params)
 {
     try {
         // Call the service's single sign-on token retrieval function, using the
@@ -699,7 +719,7 @@ function provisioningmodule_ServiceSingleSignOn(array $params)
     } catch (Exception $e) {
         // Record the error in WHMCS's module log.
         logModuleCall(
-            'provisioningmodule',
+            'instructinginteraction',
             __FUNCTION__,
             $params,
             $e->getMessage(),
@@ -730,7 +750,7 @@ function provisioningmodule_ServiceSingleSignOn(array $params)
  *
  * @return array
  */
-function provisioningmodule_AdminSingleSignOn(array $params)
+function provisionlaravelmodule_AdminSingleSignOn(array $params)
 {
     try {
         // Call the service's single sign-on admin token retrieval function,
@@ -744,7 +764,7 @@ function provisioningmodule_AdminSingleSignOn(array $params)
     } catch (Exception $e) {
         // Record the error in WHMCS's module log.
         logModuleCall(
-            'provisioningmodule',
+            'instructinginteraction',
             __FUNCTION__,
             $params,
             $e->getMessage(),
@@ -788,7 +808,7 @@ function provisioningmodule_AdminSingleSignOn(array $params)
  *
  * @return array
  */
-function provisioningmodule_ClientArea(array $params)
+function provisionlaravelmodule_ClientArea(array $params)
 {
     // Determine the requested action and set service call parameters based on
     // the action.
@@ -820,7 +840,7 @@ function provisioningmodule_ClientArea(array $params)
     } catch (Exception $e) {
         // Record the error in WHMCS's module log.
         logModuleCall(
-            'provisioningmodule',
+            'instructinginteraction',
             __FUNCTION__,
             $params,
             $e->getMessage(),
