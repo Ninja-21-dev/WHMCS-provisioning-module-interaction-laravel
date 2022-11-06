@@ -23,7 +23,7 @@ $test_fields = array(
     $USER_DB_NAME => $test_user,
     $USER_DB_PWD => $test_user,
     $USER_DB_STATUS => "status",
-    $USER_DB_ROLES => array(1), //[1]
+    $USER_DB_ROLES => array(1, 2), //[1, 2]
 );
 
 $new_user = create_user_api_call(
@@ -37,9 +37,11 @@ $users = get_users_api_call(
     $token
 );
 
-$user_count = count($users);
-$last_user = $users[$user_count - 1];
-$last_user[$USER_DB_STATUS] = 'updated status';
+//$user_count = count($users);
+//$last_user = $users[$user_codunt - 1];
+$last_user = end($users);
+$last_user[$USER_DB_STATUS] = 'updated aastatus';
+//$last_user[$USER_DB_ROLES] = array(1,2);
 
 print("last user" . PHP_EOL);
 print(json_encode($last_user) . PHP_EOL);

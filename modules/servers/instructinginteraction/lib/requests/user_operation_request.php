@@ -66,14 +66,14 @@ function update_user_api_call($domain_url,
                               $token,
                               array $params)
 {
-    global $URL_USER_MAIN_PATH;
-    global $USER_DB_ID, $USER_DB_ROLES, $ROLE_DB_ID;
+    global $URL_USER_MAIN_PATH, $USER_DB_ID, $USER_DB_ROLES, $ROLE_DB_ID;
     $connection_url = $domain_url . $URL_USER_MAIN_PATH . '/' . $params[$USER_DB_ID];
 
     $user_ids = array ();
-    $id_count = 0;
+//    $id_count = 0;
     foreach($params[$USER_DB_ROLES] as $user_role){
-        $user_ids[ $id_count++ ] = $user_role[$ROLE_DB_ID];
+//        $user_ids.array_push(array($user_role[$ROLE_DB_ID]));
+        $user_ids[] = $user_role[$ROLE_DB_ID];
     }
     print(json_encode($user_ids));
 
