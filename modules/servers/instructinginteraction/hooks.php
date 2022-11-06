@@ -36,7 +36,7 @@
  *
  * @return mixed Return dependant upon hook function
  */
-function hook_provisionlaravelmodule_clientedit(array $params)
+function hook_instructinginteraction_clientedit(array $params)
 {
     try {
         // Call the service's function, using the values provided by WHMCS in
@@ -51,7 +51,7 @@ function hook_provisionlaravelmodule_clientedit(array $params)
  *
  * add_hook(string $hookPointName, int $priority, string|array|Closure $function)
  */
-add_hook('ClientEdit', 1, 'hook_provisionlaravelmodule_clientedit');
+add_hook('ClientEdit', 1, 'hook_instructinginteraction_clientedit');
 
 /**
  * Insert a service item to the client area navigation bar.

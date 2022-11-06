@@ -16,7 +16,7 @@
  * Within the module itself, all functions must be prefixed with the module
  * filename, followed by an underscore, and then the function name. For this
  * example file, the filename is "instructinginteraction" and therefore all
- * functions begin "provisionlaravelmodule_".
+ * functions begin "instructinginteraction_".
  *
  * If your module or third party API does not support a given function, you
  * should not define that function within your module. Only the _ConfigOptions
@@ -50,7 +50,7 @@ require_once __DIR__ . '/lib/loader.php';
  *
  * @return array
  */
-function provisionlaravelmodule_MetaData()
+function instructinginteraction_MetaData()
 {
     return array(
         'DisplayName' => 'Demo Provisioning Module',
@@ -86,7 +86,7 @@ function provisionlaravelmodule_MetaData()
  *
  * @return array
  */
-function provisionlaravelmodule_ConfigOptions()
+function instructinginteraction_ConfigOptions()
 {
     return array(
         // a text field type allows for single line text input
@@ -168,7 +168,7 @@ function provisionlaravelmodule_ConfigOptions()
  *
  * @return string "success" or an error message
  */
-function provisionlaravelmodule_CreateAccount(array $params)
+function instructinginteraction_CreateAccount(array $params)
 {
     try {
         // Call the service's provisioning function, using the values provided
@@ -217,7 +217,7 @@ function provisionlaravelmodule_CreateAccount(array $params)
  *
  * @return string "success" or an error message
  */
-function provisionlaravelmodule_SuspendAccount(array $params)
+function instructinginteraction_SuspendAccount(array $params)
 {
     try {
         // Call the service's suspend function, using the values provided by
@@ -251,7 +251,7 @@ function provisionlaravelmodule_SuspendAccount(array $params)
  *
  * @return string "success" or an error message
  */
-function provisionlaravelmodule_UnsuspendAccount(array $params)
+function instructinginteraction_UnsuspendAccount(array $params)
 {
     try {
         // Call the service's unsuspend function, using the values provided by
@@ -284,7 +284,7 @@ function provisionlaravelmodule_UnsuspendAccount(array $params)
  *
  * @return string "success" or an error message
  */
-function provisionlaravelmodule_TerminateAccount(array $params)
+function instructinginteraction_TerminateAccount(array $params)
 {
     try {
         // Call the service's terminate function, using the values provided by
@@ -321,7 +321,7 @@ function provisionlaravelmodule_TerminateAccount(array $params)
  *
  * @return string "success" or an error message
  */
-function provisionlaravelmodule_ChangePassword(array $params)
+function instructinginteraction_ChangePassword(array $params)
 {
     try {
         // Call the service's change password function, using the values
@@ -367,7 +367,7 @@ function provisionlaravelmodule_ChangePassword(array $params)
  *
  * @return string "success" or an error message
  */
-function provisionlaravelmodule_ChangePackage(array $params)
+function instructinginteraction_ChangePackage(array $params)
 {
     try {
         // Call the service's change password function, using the values
@@ -410,7 +410,7 @@ function provisionlaravelmodule_ChangePackage(array $params)
  *
  * @return string "success" or an error message
  */
-function provisionlaravelmodule_Renew(array $params)
+function instructinginteraction_Renew(array $params)
 {
     try {
         // Call the service's provisioning function, using the values provided
@@ -462,7 +462,7 @@ function provisionlaravelmodule_Renew(array $params)
  *
  * @return array
  */
-function provisionlaravelmodule_TestConnection(array $params)
+function instructinginteraction_TestConnection(array $params)
 {
     try {
         // Call the service's connection test function.
@@ -495,11 +495,11 @@ function provisionlaravelmodule_TestConnection(array $params)
  * Define additional actions that an admin user can perform for an
  * instance of a product/service.
  *
- * @see provisionlaravelmodule_buttonOneFunction()
+ * @see instructinginteraction_buttonOneFunction()
  *
  * @return array
  */
-function provisionlaravelmodule_AdminCustomButtonArray()
+function instructinginteraction_AdminCustomButtonArray()
 {
     return array(
         "Button 1 Display Value" => "buttonOneFunction",
@@ -518,7 +518,7 @@ function provisionlaravelmodule_AdminCustomButtonArray()
  *
  * @return array
  */
-function provisionlaravelmodule_ClientAreaCustomButtonArray()
+function instructinginteraction_ClientAreaCustomButtonArray()
 {
     return array(
         "Action 1 Display Value" => "actionOneFunction",
@@ -537,11 +537,11 @@ function provisionlaravelmodule_ClientAreaCustomButtonArray()
  * @param array $params common module parameters
  *
  * @see https://developers.whmcs.com/provisioning-modules/module-parameters/
- * @see provisionlaravelmodule_AdminCustomButtonArray()
+ * @see instructinginteraction_AdminCustomButtonArray()
  *
  * @return string "success" or an error message
  */
-function provisionlaravelmodule_buttonOneFunction(array $params)
+function instructinginteraction_buttonOneFunction(array $params)
 {
     try {
         // Call the service's function, using the values provided by WHMCS in
@@ -573,11 +573,11 @@ function provisionlaravelmodule_buttonOneFunction(array $params)
  * @param array $params common module parameters
  *
  * @see https://developers.whmcs.com/provisioning-modules/module-parameters/
- * @see provisionlaravelmodule_ClientAreaCustomButtonArray()
+ * @see instructinginteraction_ClientAreaCustomButtonArray()
  *
  * @return string "success" or an error message
  */
-function provisionlaravelmodule_actionOneFunction(array $params)
+function instructinginteraction_actionOneFunction(array $params)
 {
     try {
         // Call the service's function, using the values provided by WHMCS in
@@ -610,11 +610,11 @@ function provisionlaravelmodule_actionOneFunction(array $params)
  * @param array $params common module parameters
  *
  * @see https://developers.whmcs.com/provisioning-modules/module-parameters/
- * @see provisionlaravelmodule_AdminServicesTabFieldsSave()
+ * @see instructinginteraction_AdminServicesTabFieldsSave()
  *
  * @return array
  */
-function provisionlaravelmodule_AdminServicesTabFields(array $params)
+function instructinginteraction_AdminServicesTabFields(array $params)
 {
     try {
         // Call the service's function, using the values provided by WHMCS in
@@ -626,9 +626,9 @@ function provisionlaravelmodule_AdminServicesTabFields(array $params)
             'Number of Apples' => (int) $response['numApples'],
             'Number of Oranges' => (int) $response['numOranges'],
             'Last Access Date' => date("Y-m-d H:i:s", $response['lastLoginTimestamp']),
-            'Something Editable' => '<input type="hidden" name="provisionlaravelmodule_original_uniquefieldname" '
+            'Something Editable' => '<input type="hidden" name="instructinginteraction_original_uniquefieldname" '
                 . 'value="' . htmlspecialchars($response['textvalue']) . '" />'
-                . '<input type="text" name="provisionlaravelmodule_uniquefieldname"'
+                . '<input type="text" name="instructinginteraction_uniquefieldname"'
                 . 'value="' . htmlspecialchars($response['textvalue']) . '" />',
         );
     } catch (Exception $e) {
@@ -641,7 +641,7 @@ function provisionlaravelmodule_AdminServicesTabFields(array $params)
             $e->getTraceAsString()
         );
 
-        // In an error condition, simpprovisionlaravelmodule_ConfigOptionsly return no additional fields to display.
+        // In an error condition, simpinstructinginteraction_ConfigOptionsly return no additional fields to display.
     }
 
     return array();
@@ -659,17 +659,17 @@ function provisionlaravelmodule_AdminServicesTabFields(array $params)
  * @param array $params common module parameters
  *
  * @see https://developers.whmcs.com/provisioning-modules/module-parameters/
- * @see provisionlaravelmodule_AdminServicesTabFields()
+ * @see instructinginteraction_AdminServicesTabFields()
  */
-function provisionlaravelmodule_AdminServicesTabFieldsSave(array $params)
+function instructinginteraction_AdminServicesTabFieldsSave(array $params)
 {
     // Fetch form submission variables.
-    $originalFieldValue = isset($_REQUEST['provisionlaravelmodule_original_uniquefieldname'])
-        ? $_REQUEST['provisionlaravelmodule_original_uniquefieldname']
+    $originalFieldValue = isset($_REQUEST['instructinginteraction_original_uniquefieldname'])
+        ? $_REQUEST['instructinginteraction_original_uniquefieldname']
         : '';
 
-    $newFieldValue = isset($_REQUEST['provisionlaravelmodule_uniquefieldname'])
-        ? $_REQUEST['provisionlaravelmodule_uniquefieldname']
+    $newFieldValue = isset($_REQUEST['instructinginteraction_uniquefieldname'])
+        ? $_REQUEST['instructinginteraction_uniquefieldname']
         : '';
 
     // Look for a change in value to avoid making unnecessary service calls.
@@ -705,7 +705,7 @@ function provisionlaravelmodule_AdminServicesTabFieldsSave(array $params)
  *
  * @return array
  */
-function provisionlaravelmodule_ServiceSingleSignOn(array $params)
+function instructinginteraction_ServiceSingleSignOn(array $params)
 {
     try {
         // Call the service's single sign-on token retrieval function, using the
@@ -750,7 +750,7 @@ function provisionlaravelmodule_ServiceSingleSignOn(array $params)
  *
  * @return array
  */
-function provisionlaravelmodule_AdminSingleSignOn(array $params)
+function instructinginteraction_AdminSingleSignOn(array $params)
 {
     try {
         // Call the service's single sign-on admin token retrieval function,
@@ -808,7 +808,7 @@ function provisionlaravelmodule_AdminSingleSignOn(array $params)
  *
  * @return array
  */
-function provisionlaravelmodule_ClientArea(array $params)
+function instructinginteraction_ClientArea(array $params)
 {
     // Determine the requested action and set service call parameters based on
     // the action.
