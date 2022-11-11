@@ -11,8 +11,8 @@ require_once __DIR__ . '/main_request.php';
 function get_users_api_call($domain_url,
                             $token)
 {
-    global $GET_REQUEST_METHOD, $URL_USER_MAIN_PATH;
-    $connection_url = $domain_url . $URL_USER_MAIN_PATH;
+    global $INSTRUCTING_GET_REQUEST_METHOD, $INSTRUCTING_URL_USER_MAIN_PATH;
+    $connection_url = $domain_url . $INSTRUCTING_URL_USER_MAIN_PATH;
 
     // Set post values
     $postfields = array();
@@ -24,13 +24,13 @@ function get_users_api_call($domain_url,
     );
 
     // Get decoded http response
-    $jsonData = original_api_call($connection_url, $postheaders, $postfields, $GET_REQUEST_METHOD);
+    $jsonData = original_api_call($connection_url, $postheaders, $postfields, $INSTRUCTING_GET_REQUEST_METHOD);
 
     // Print array structure for inspection
-    global $DATA_JSON_KEY;
-    print(json_encode($jsonData[$DATA_JSON_KEY]) . PHP_EOL);
+    global $INSTRUCTING_DATA_JSON_KEY;
+    print(json_encode($jsonData[$INSTRUCTING_DATA_JSON_KEY]) . PHP_EOL);
 
-    return $jsonData[$DATA_JSON_KEY];
+    return $jsonData[$INSTRUCTING_DATA_JSON_KEY];
 }
 
 
@@ -39,8 +39,8 @@ function create_user_api_call($domain_url,
                               $token,
                               array $params)
 {
-    global $URL_USER_MAIN_PATH;
-    $connection_url = $domain_url . $URL_USER_MAIN_PATH;
+    global $INSTRUCTING_URL_USER_MAIN_PATH;
+    $connection_url = $domain_url . $INSTRUCTING_URL_USER_MAIN_PATH;
 
     // Set post values
     $create_info = $params;
@@ -51,9 +51,9 @@ function create_user_api_call($domain_url,
         'Authorization:Bearer ' . $token
     );
 
-    global $POST_REQUEST_METHOD;
+    global $INSTRUCTING_POST_REQUEST_METHOD;
     // Get decoded http response
-    $jsonData = original_api_call($connection_url, $postheaders, $create_info, $POST_REQUEST_METHOD);
+    $jsonData = original_api_call($connection_url, $postheaders, $create_info, $INSTRUCTING_POST_REQUEST_METHOD);
 
     // Print array structure for inspection
     print(json_encode($jsonData) . PHP_EOL);
@@ -66,21 +66,21 @@ function update_user_api_call($domain_url,
                               $token,
                               array $params)
 {
-    global $URL_USER_MAIN_PATH, $USER_DB_ID, $USER_DB_ROLES, $ROLE_DB_ID;
-    $connection_url = $domain_url . $URL_USER_MAIN_PATH . '/' . $params[$USER_DB_ID];
+    global $INSTRUCTING_URL_USER_MAIN_PATH, $INSTRUCTING_USER_DB_ID, $INSTRUCTING_USER_DB_ROLES, $INSTRUCTING_ROLE_DB_ID;
+    $connection_url = $domain_url . $INSTRUCTING_URL_USER_MAIN_PATH . '/' . $params[$INSTRUCTING_USER_DB_ID];
 
     $user_ids = array ();
 //    $id_count = 0;
-    foreach($params[$USER_DB_ROLES] as $user_role){
-//        $user_ids.array_push(array($user_role[$ROLE_DB_ID]));
-        $user_ids[] = $user_role[$ROLE_DB_ID];
+    foreach($params[$INSTRUCTING_USER_DB_ROLES] as $user_role){
+//        $user_ids.array_push(array($user_role[$INSTRUCTING_ROLE_DB_ID]));
+        $user_ids[] = $user_role[$INSTRUCTING_ROLE_DB_ID];
     }
     print(json_encode($user_ids));
 
 
     // Set Updated User Info
     $update_info = $params;
-    $update_info[$USER_DB_ROLES] = $user_ids;
+    $update_info[$INSTRUCTING_USER_DB_ROLES] = $user_ids;
 
     // Set Http Request Headers
     $httpheaders = array(
@@ -88,9 +88,9 @@ function update_user_api_call($domain_url,
         'Authorization:Bearer ' . $token
     );
 
-    global $PUT_REQUEST_METHOD;
+    global $INSTRUCTING_PUT_REQUEST_METHOD;
     // Get decoded http response
-    $jsonData = original_api_call($connection_url, $httpheaders, $update_info, $PUT_REQUEST_METHOD);
+    $jsonData = original_api_call($connection_url, $httpheaders, $update_info, $INSTRUCTING_PUT_REQUEST_METHOD);
 
     // Print array structure for inspection
     print(json_encode($jsonData) . PHP_EOL);

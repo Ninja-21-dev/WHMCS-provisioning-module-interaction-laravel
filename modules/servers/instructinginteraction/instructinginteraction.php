@@ -180,6 +180,8 @@ function instructinginteraction_CreateAccount(array $params)
         //     ...
         // )
         // ```
+//        global $INSTRUCTING_BASE_URL
+//        login_api_call($INSTRUCTING_BASE_URL, $INSTRUCTING_ADMIN_EMAIL, $INSTRUCTING_ADMIN_PWD);
         print($params["clientsdetails"]["email"]);
     } catch (Exception $e) {
         // Record the error in WHMCS's module log.
