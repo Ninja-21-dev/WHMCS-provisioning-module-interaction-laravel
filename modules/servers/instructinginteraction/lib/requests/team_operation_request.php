@@ -49,7 +49,7 @@ function create_team_api_call($domain_url,
         'Accept:Application/json',
         'Authorization:Bearer ' . $token
     );
-
+ 
     // Get decoded http response
     $jsonData = original_api_call($connection_url, $postheaders, $create_info, $INSTRUCTING_POST_REQUEST_METHOD);
 
