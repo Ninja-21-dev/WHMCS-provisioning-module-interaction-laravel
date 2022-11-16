@@ -187,7 +187,62 @@ function instructinginteraction_CreateAccount(array $params)
         //     ...
         // )
         // ```
-        print($params["clientsdetails"]["email"]);
+
+        global $INSTRUCTING_BASE_URL, $INSTRUCTING_ADMIN_EMAIL, $INSTRUCTING_ADMIN_PWD;
+        $token = login_api_call($INSTRUCTING_BASE_URL, $INSTRUCTING_ADMIN_EMAIL, $INSTRUCTING_ADMIN_PWD);
+        logModuleCall(
+            'instructinginteraction',
+            __FUNCTION__,
+            $params,
+            "Get token",
+            "Token"
+        );
+
+        global $INSTRUCTING_STATUS_ACTIVE, $INSTRUCTING_STATUS_INACTIVE;
+
+        global $INSTRUCTING_USER_DB_EMAIL, $INSTRUCTING_USER_DB_NAME,
+               $INSTRUCTING_USER_DB_PWD, $INSTRUCTING_USER_DB_STATUS,
+               $INSTRUCTING_USER_DB_ROLES, $INSTRUCTING_USER_DB_ID;
+        $user_email = $params["clientsdetails"]["email"];
+        $user_str = explode('@', $user_email);
+        $user_name = $user_str[0];
+        $user_pwd = randomPassword();
+        $user_params = array(
+            $INSTRUCTING_USER_DB_EMAIL => $user_email,
+            $INSTRUCTING_USER_DB_NAME => $user_name,
+            $INSTRUCTING_USER_DB_PWD => $user_pwd,
+            $INSTRUCTING_USER_DB_STATUS => $INSTRUCTING_STATUS_ACTIVE,
+            $INSTRUCTING_USER_DB_ROLES => array(1, 2), //[1, 2]
+        );
+
+        $user = create_user_api_call($INSTRUCTING_BASE_URL, $token, $user_params);
+        logModuleCall(
+            'instructinginteraction',
+            __FUNCTION__,
+            $params,
+            "Create an user when service is created",
+            "Create an user"
+        );
+
+        global $INSTRUCTING_TEAM_DB_OWNER_ID, $INSTRUCTING_TEAM_DB_OWNER,
+               $INSTRUCTING_TEAM_DB_STATUS, $INSTRUCTING_TEAM_DB_NAME;
+        $team_params = array(
+            $INSTRUCTING_TEAM_DB_OWNER_ID => $user[$INSTRUCTING_USER_DB_ID],
+            $INSTRUCTING_TEAM_DB_OWNER => $user[$INSTRUCTING_USER_DB_NAME],
+            $INSTRUCTING_TEAM_DB_STATUS => $INSTRUCTING_STATUS_ACTIVE,
+            $INSTRUCTING_TEAM_DB_NAME => params["domain"]
+        );
+
+        create_team_api_call($INSTRUCTING_BASE_URL, $token, $team_params);
+        logModuleCall(
+            'instructinginteraction',
+            __FUNCTION__,
+            $params,
+            "Create a team when service is created",
+            "Create a team"
+        );
+
+//        print($params["clientsdetails"]["email"]);
     } catch (Exception $e) {
         // Record the error in WHMCS's module log.
         logModuleCall(
@@ -222,6 +277,44 @@ function instructinginteraction_SuspendAccount(array $params)
     try {
         // Call the service's suspend function, using the values provided by
         // WHMCS in `$params`.
+
+        global $INSTRUCTING_BASE_URL, $INSTRUCTING_ADMIN_EMAIL, $INSTRUCTING_ADMIN_PWD;
+        $token = login_api_call($INSTRUCTING_BASE_URL, $INSTRUCTING_ADMIN_EMAIL, $INSTRUCTING_ADMIN_PWD);
+        logModuleCall(
+            'instructinginteraction',
+            __FUNCTION__,
+            $params,
+            "Get token",
+            "Token"
+        );
+
+        global $INSTRUCTING_USER_DB_EMAIL, $INSTRUCTING_USER_DB_ID,
+               $INSTRUCTING_USER_DB_STATUS, $INSTRUCTING_STATUS_INACTIVE;
+        $users = get_users_api_call($INSTRUCTING_BASE_URL, $token);
+        logModuleCall(
+            'instructinginteraction',
+            __FUNCTION__,
+            $params,
+            "Get all users from laravel site",
+            "Get all users"
+        );
+
+        foreach($users as $user)
+        {
+            if( $user[$INSTRUCTING_USER_DB_EMAIL] == $params["clientsdetails"]["email"] )
+            {
+                $user_params = $user;
+                $user_params[$INSTRUCTING_USER_DB_STATUS] = $INSTRUCTING_STATUS_INACTIVE;
+                $updated_user = update_user_api_call($INSTRUCTING_BASE_URL, $token, $params);
+                logModuleCall(
+                    'instructinginteraction',
+                    __FUNCTION__,
+                    $params,
+                    "After updating user",
+                    json_encode($updated_user)
+                );
+            }
+        }
     } catch (Exception $e) {
         // Record the error in WHMCS's module log.
         logModuleCall(
