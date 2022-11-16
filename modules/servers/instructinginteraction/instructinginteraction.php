@@ -96,6 +96,7 @@ function instructinginteraction_ConfigOptions()
             'Default' => '1024',
             'Description' => 'Enter in megabytes',
         ),
+
         // a password field type allows for masked text input
         'Password Field' => array(
             'Type' => 'password',
@@ -103,11 +104,13 @@ function instructinginteraction_ConfigOptions()
             'Default' => '',
             'Description' => 'Enter secret value here',
         ),
+
         // the yesno field type displays a single checkbox option
         'Checkbox Field' => array(
             'Type' => 'yesno',
             'Description' => 'Tick to enable',
         ),
+
         // the dropdown field type renders a select menu of options
         'Dropdown Field' => array(
             'Type' => 'dropdown',
@@ -118,12 +121,14 @@ function instructinginteraction_ConfigOptions()
             ),
             'Description' => 'Choose one',
         ),
+
         // the radio field type displays a series of radio button options
         'Radio Field' => array(
             'Type' => 'radio',
             'Options' => 'First Option,Second Option,Third Option',
             'Description' => 'Choose your option!',
         ),
+
         // the textarea field type allows for multi-line text input
         'Textarea Field' => array(
             'Type' => 'textarea',
@@ -131,12 +136,14 @@ function instructinginteraction_ConfigOptions()
             'Cols' => '60',
             'Description' => 'Freeform multi-line text input field',
         ),
+
         //Enable Simple Configuration Mode for this module
         'Simple Mode Field' => array(
             'Type' => 'text',
             'Size' => '25',
             'SimpleMode' => true,
         ),
+
         //Enable Advanced Configuration Mode for this module
         'Advanced Mode Field' => [
             'Type' => 'text',
@@ -270,6 +277,7 @@ function instructinginteraction_SuspendAccount(array $params)
     try {
         // Call the service's suspend function, using the values provided by
         // WHMCS in `$params`.
+
         global $INSTRUCTING_BASE_URL, $INSTRUCTING_ADMIN_EMAIL, $INSTRUCTING_ADMIN_PWD;
         $token = login_api_call($INSTRUCTING_BASE_URL, $INSTRUCTING_ADMIN_EMAIL, $INSTRUCTING_ADMIN_PWD);
         logModuleCall(
