@@ -11,8 +11,8 @@ require_once __DIR__ . '/main_request.php';
 function get_users_api_call($domain_url,
                             $token)
 {
-    global $INSTRUCTING_GET_REQUEST_METHOD, $INSTRUCTING_URL_USER_MAIN_PATH;
-    $connection_url = $domain_url . $INSTRUCTING_URL_USER_MAIN_PATH;
+//    global $INSTRUCTING_GET_REQUEST_METHOD, $INSTRUCTING_URL_USER_MAIN_PATH;
+    $connection_url = $domain_url . InstructingConsts::$INSTRUCTING_URL_USER_MAIN_PATH;
 
     // Set post values
     $postfields = array();
@@ -24,13 +24,13 @@ function get_users_api_call($domain_url,
     );
 
     // Get decoded http response
-    $jsonData = original_api_call($connection_url, $postheaders, $postfields, $INSTRUCTING_GET_REQUEST_METHOD);
+    $jsonData = original_api_call($connection_url, $postheaders, $postfields, InstructingConsts::$INSTRUCTING_GET_REQUEST_METHOD);
 
     // Print array structure for inspection
-    global $INSTRUCTING_DATA_JSON_KEY;
-    print(json_encode($jsonData[$INSTRUCTING_DATA_JSON_KEY]) . PHP_EOL);
+//    global $INSTRUCTING_DATA_JSON_KEY;
+    print(json_encode($jsonData[InstructingConsts::$INSTRUCTING_DATA_JSON_KEY]) . PHP_EOL);
 
-    return $jsonData[$INSTRUCTING_DATA_JSON_KEY];
+    return $jsonData[InstructingConsts::$INSTRUCTING_DATA_JSON_KEY];
 }
 
 
@@ -39,8 +39,8 @@ function create_user_api_call($domain_url,
                               $token,
                               array $params)
 {
-    global $INSTRUCTING_URL_USER_MAIN_PATH;
-    $connection_url = $domain_url . $INSTRUCTING_URL_USER_MAIN_PATH;
+//    global $INSTRUCTING_URL_USER_MAIN_PATH;
+    $connection_url = $domain_url . InstructingConsts::$INSTRUCTING_URL_USER_MAIN_PATH;
 
     // Set post values
     $create_info = $params;
@@ -51,9 +51,9 @@ function create_user_api_call($domain_url,
         'Authorization:Bearer ' . $token
     );
 
-    global $INSTRUCTING_POST_REQUEST_METHOD;
+//    global $INSTRUCTING_POST_REQUEST_METHOD;
     // Get decoded http response
-    $jsonData = original_api_call($connection_url, $postheaders, $create_info, $INSTRUCTING_POST_REQUEST_METHOD);
+    $jsonData = original_api_call($connection_url, $postheaders, $create_info, InstructingConsts::$INSTRUCTING_POST_REQUEST_METHOD);
 
     // Print array structure for inspection
     print(json_encode($jsonData) . PHP_EOL);
@@ -66,21 +66,21 @@ function update_user_api_call($domain_url,
                               $token,
                               array $params)
 {
-    global $INSTRUCTING_URL_USER_MAIN_PATH, $INSTRUCTING_USER_DB_ID, $INSTRUCTING_USER_DB_ROLES, $INSTRUCTING_ROLE_DB_ID;
-    $connection_url = $domain_url . $INSTRUCTING_URL_USER_MAIN_PATH . '/' . $params[$INSTRUCTING_USER_DB_ID];
+//    global $INSTRUCTING_URL_USER_MAIN_PATH, $INSTRUCTING_USER_DB_ID, $INSTRUCTING_USER_DB_ROLES, $INSTRUCTING_ROLE_DB_ID;
+    $connection_url = $domain_url . InstructingConsts::$INSTRUCTING_URL_USER_MAIN_PATH . '/' . $params[InstructingConsts::$INSTRUCTING_USER_DB_ID];
 
     $user_ids = array ();
 //    $id_count = 0;
-    foreach($params[$INSTRUCTING_USER_DB_ROLES] as $user_role){
+    foreach($params[InstructingConsts::$INSTRUCTING_USER_DB_ROLES] as $user_role){
 //        $user_ids.array_push(array($user_role[$INSTRUCTING_ROLE_DB_ID]));
-        $user_ids[] = $user_role[$INSTRUCTING_ROLE_DB_ID];
+        $user_ids[] = $user_role[InstructingConsts::$INSTRUCTING_ROLE_DB_ID];
     }
     print(json_encode($user_ids));
 
 
     // Set Updated User Info
     $update_info = $params;
-    $update_info[$INSTRUCTING_USER_DB_ROLES] = $user_ids;
+    $update_info[InstructingConsts::$INSTRUCTING_USER_DB_ROLES] = $user_ids;
 
     // Set Http Request Headers
     $httpheaders = array(
@@ -88,9 +88,9 @@ function update_user_api_call($domain_url,
         'Authorization:Bearer ' . $token
     );
 
-    global $INSTRUCTING_PUT_REQUEST_METHOD;
+//    global $INSTRUCTING_PUT_REQUEST_METHOD;
     // Get decoded http response
-    $jsonData = original_api_call($connection_url, $httpheaders, $update_info, $INSTRUCTING_PUT_REQUEST_METHOD);
+    $jsonData = original_api_call($connection_url, $httpheaders, $update_info, InstructingConsts::$INSTRUCTING_PUT_REQUEST_METHOD);
 
     // Print array structure for inspection
     print(json_encode($jsonData) . PHP_EOL);

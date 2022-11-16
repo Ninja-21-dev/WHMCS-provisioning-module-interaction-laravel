@@ -188,8 +188,8 @@ function instructinginteraction_CreateAccount(array $params)
         // )
         // ```
 
-        global $INSTRUCTING_BASE_URL, $INSTRUCTING_ADMIN_EMAIL, $INSTRUCTING_ADMIN_PWD;
-        $token = login_api_call($INSTRUCTING_BASE_URL, $INSTRUCTING_ADMIN_EMAIL, $INSTRUCTING_ADMIN_PWD);
+//        global $INSTRUCTING_BASE_URL, $INSTRUCTING_ADMIN_EMAIL, $INSTRUCTING_ADMIN_PWD;
+        $token = login_api_call(InstructingConsts::$INSTRUCTING_BASE_URL, InstructingConsts::$INSTRUCTING_ADMIN_EMAIL, InstructingConsts::$INSTRUCTING_ADMIN_PWD);
         logModuleCall(
             'instructinginteraction',
             __FUNCTION__,
@@ -198,24 +198,24 @@ function instructinginteraction_CreateAccount(array $params)
             "Token"
         );
 
-        global $INSTRUCTING_STATUS_ACTIVE, $INSTRUCTING_STATUS_INACTIVE;
-
-        global $INSTRUCTING_USER_DB_EMAIL, $INSTRUCTING_USER_DB_NAME,
-               $INSTRUCTING_USER_DB_PWD, $INSTRUCTING_USER_DB_STATUS,
-               $INSTRUCTING_USER_DB_ROLES, $INSTRUCTING_USER_DB_ID;
+//        global $INSTRUCTING_STATUS_ACTIVE, $INSTRUCTING_STATUS_INACTIVE;
+//
+//        global $INSTRUCTING_USER_DB_EMAIL, $INSTRUCTING_USER_DB_NAME,
+//               $INSTRUCTING_USER_DB_PWD, $INSTRUCTING_USER_DB_STATUS,
+//               $INSTRUCTING_USER_DB_ROLES, $INSTRUCTING_USER_DB_ID;
         $user_email = $params["clientsdetails"]["email"];
         $user_str = explode('@', $user_email);
         $user_name = $user_str[0];
         $user_pwd = randomPassword();
         $user_params = array(
-            $INSTRUCTING_USER_DB_EMAIL => $user_email,
-            $INSTRUCTING_USER_DB_NAME => $user_name,
-            $INSTRUCTING_USER_DB_PWD => $user_pwd,
-            $INSTRUCTING_USER_DB_STATUS => $INSTRUCTING_STATUS_ACTIVE,
-            $INSTRUCTING_USER_DB_ROLES => array(1, 2), //[1, 2]
+            InstructingConsts::$INSTRUCTING_USER_DB_EMAIL => $user_email,
+            InstructingConsts::$INSTRUCTING_USER_DB_NAME => $user_name,
+            InstructingConsts::$INSTRUCTING_USER_DB_PWD => $user_pwd,
+            InstructingConsts::$INSTRUCTING_USER_DB_STATUS => InstructingConsts::$INSTRUCTING_STATUS_ACTIVE,
+            InstructingConsts::$INSTRUCTING_USER_DB_ROLES => array(1, 2), //[1, 2]
         );
 
-        $user = create_user_api_call($INSTRUCTING_BASE_URL, $token, $user_params);
+        $user = create_user_api_call(InstructingConsts::$INSTRUCTING_BASE_URL, $token, $user_params);
         logModuleCall(
             'instructinginteraction',
             __FUNCTION__,
@@ -224,16 +224,16 @@ function instructinginteraction_CreateAccount(array $params)
             "Create an user"
         );
 
-        global $INSTRUCTING_TEAM_DB_OWNER_ID, $INSTRUCTING_TEAM_DB_OWNER,
-               $INSTRUCTING_TEAM_DB_STATUS, $INSTRUCTING_TEAM_DB_NAME;
+//        global $INSTRUCTING_TEAM_DB_OWNER_ID, $INSTRUCTING_TEAM_DB_OWNER,
+//               $INSTRUCTING_TEAM_DB_STATUS, $INSTRUCTING_TEAM_DB_NAME;
         $team_params = array(
-            $INSTRUCTING_TEAM_DB_OWNER_ID => $user[$INSTRUCTING_USER_DB_ID],
-            $INSTRUCTING_TEAM_DB_OWNER => $user[$INSTRUCTING_USER_DB_NAME],
-            $INSTRUCTING_TEAM_DB_STATUS => $INSTRUCTING_STATUS_ACTIVE,
-            $INSTRUCTING_TEAM_DB_NAME => params["domain"]
+            InstructingConsts::$INSTRUCTING_TEAM_DB_OWNER_ID => $user[InstructingConsts::$INSTRUCTING_USER_DB_ID],
+            InstructingConsts::$INSTRUCTING_TEAM_DB_OWNER => $user[InstructingConsts::$INSTRUCTING_USER_DB_NAME],
+            InstructingConsts::$INSTRUCTING_TEAM_DB_STATUS => InstructingConsts::$INSTRUCTING_STATUS_ACTIVE,
+            InstructingConsts::$INSTRUCTING_TEAM_DB_NAME => params["domain"]
         );
 
-        create_team_api_call($INSTRUCTING_BASE_URL, $token, $team_params);
+        create_team_api_call(InstructingConsts::$INSTRUCTING_BASE_URL, $token, $team_params);
         logModuleCall(
             'instructinginteraction',
             __FUNCTION__,
@@ -278,8 +278,8 @@ function instructinginteraction_SuspendAccount(array $params)
         // Call the service's suspend function, using the values provided by
         // WHMCS in `$params`.
 
-        global $INSTRUCTING_BASE_URL, $INSTRUCTING_ADMIN_EMAIL, $INSTRUCTING_ADMIN_PWD;
-        $token = login_api_call($INSTRUCTING_BASE_URL, $INSTRUCTING_ADMIN_EMAIL, $INSTRUCTING_ADMIN_PWD);
+//        global $INSTRUCTING_BASE_URL, $INSTRUCTING_ADMIN_EMAIL, $INSTRUCTING_ADMIN_PWD;
+        $token = login_api_call(InstructingConsts::$INSTRUCTING_BASE_URL, InstructingConsts::$INSTRUCTING_ADMIN_EMAIL, InstructingConsts::$INSTRUCTING_ADMIN_PWD);
         logModuleCall(
             'instructinginteraction',
             __FUNCTION__,
@@ -288,9 +288,9 @@ function instructinginteraction_SuspendAccount(array $params)
             "Token"
         );
 
-        global $INSTRUCTING_USER_DB_EMAIL, $INSTRUCTING_USER_DB_ID,
-               $INSTRUCTING_USER_DB_STATUS, $INSTRUCTING_STATUS_INACTIVE;
-        $users = get_users_api_call($INSTRUCTING_BASE_URL, $token);
+//        global $INSTRUCTING_USER_DB_EMAIL, $INSTRUCTING_USER_DB_ID,
+//               $INSTRUCTING_USER_DB_STATUS, $INSTRUCTING_STATUS_INACTIVE;
+        $users = get_users_api_call(InstructingConsts::$INSTRUCTING_BASE_URL, $token);
         logModuleCall(
             'instructinginteraction',
             __FUNCTION__,
@@ -301,11 +301,11 @@ function instructinginteraction_SuspendAccount(array $params)
 
         foreach($users as $user)
         {
-            if( $user[$INSTRUCTING_USER_DB_EMAIL] == $params["clientsdetails"]["email"] )
+            if( $user[InstructingConsts::$INSTRUCTING_USER_DB_EMAIL] == $params["clientsdetails"]["email"] )
             {
                 $user_params = $user;
-                $user_params[$INSTRUCTING_USER_DB_STATUS] = $INSTRUCTING_STATUS_INACTIVE;
-                $updated_user = update_user_api_call($INSTRUCTING_BASE_URL, $token, $params);
+                $user_params[InstructingConsts::$INSTRUCTING_USER_DB_STATUS] = InstructingConsts::$INSTRUCTING_STATUS_INACTIVE;
+                $updated_user = update_user_api_call(InstructingConsts::$INSTRUCTING_BASE_URL, $token, $params);
                 logModuleCall(
                     'instructinginteraction',
                     __FUNCTION__,

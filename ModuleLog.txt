@@ -1,0 +1,1043 @@
+Request:
+instructinginteraction_createaccount	
+
+Array
+(
+    [whmcsVersion] => 8.6.0-release.1
+    [accountid] => 19
+    [serviceid] => 19
+    [addonId] => 0
+    [userid] => 6
+    [domain] => testdomain.com
+    [username] => testdoma
+    [password] => 0Y1sdqP53j
+    [packageid] => 3
+    [pid] => 3
+    [serverid] => 3
+    [status] => Pending
+    [qty] => 1
+    [type] => hostingaccount
+    [producttype] => hostingaccount
+    [moduletype] => instructinginteraction
+    [configoption1] => 
+    [configoption2] => 
+    [configoption3] => 
+    [configoption4] => 
+    [configoption5] => 
+    [configoption6] => 
+    [configoption7] => 
+    [configoption8] => 
+    [configoption9] => 
+    [configoption10] => 
+    [configoption11] => 
+    [configoption12] => 
+    [configoption13] => 
+    [configoption14] => 
+    [configoption15] => 
+    [configoption16] => 
+    [configoption17] => 
+    [configoption18] => 
+    [configoption19] => 
+    [configoption20] => 
+    [configoption21] => 
+    [configoption22] => 
+    [configoption23] => 
+    [configoption24] => 
+    [customfields] => Array
+        (
+        )
+
+    [configoptions] => Array
+        (
+        )
+
+    [model] => WHMCS\Service\Service Object
+        (
+            [table:protected] => tblhosting
+            [columnMap:protected] => Array
+                (
+                    [clientId] => userid
+                    [productId] => packageid
+                    [serverId] => server
+                    [registrationDate] => regdate
+                    [paymentGateway] => paymentmethod
+                    [status] => domainstatus
+                    [promotionId] => promoid
+                    [promotionCount] => promocount
+                    [overrideAutoSuspend] => overideautosuspend
+                    [overrideSuspendUntilDate] => overidesuspenduntil
+                    [bandwidthUsage] => bwusage
+                    [bandwidthLimit] => bwlimit
+                    [lastUpdateDate] => lastupdate
+                    [firstPaymentAmount] => firstpaymentamount
+                    [recurringAmount] => amount
+                    [recurringFee] => amount
+                )
+
+            [dates:protected] => Array
+                (
+                    [0] => registrationDate
+                    [1] => overrideSuspendUntilDate
+                    [2] => lastUpdateDate
+                )
+
+            [booleans:protected] => Array
+                (
+                    [0] => overideautosuspend
+                )
+
+            [appends:protected] => Array
+                (
+                    [0] => domainPunycode
+                    [1] => serviceProperties
+                )
+
+            [hidden:protected] => Array
+                (
+                    [0] => password
+                )
+
+            [unique] => Array
+                (
+                )
+
+            [guardedForUpdate] => Array
+                (
+                )
+
+            [strings:protected] => Array
+                (
+                )
+
+            [ints:protected] => Array
+                (
+                )
+
+            [fillable:protected] => Array
+                (
+                )
+
+            [semanticVersions:protected] => Array
+                (
+                )
+
+            [commaSeparated:protected] => Array
+                (
+                )
+
+            [characterSeparated:protected] => Array
+                (
+                )
+
+            [rules:protected] => Array
+                (
+                )
+
+            [errors:protected] => 
+            [customValidationMessages:protected] => Array
+                (
+                )
+
+            [connection:protected] => default
+            [primaryKey:protected] => id
+            [keyType:protected] => int
+            [incrementing] => 1
+            [with:protected] => Array
+                (
+                )
+
+            [withCount:protected] => Array
+                (
+                )
+
+            [perPage:protected] => 15
+            [exists] => 1
+            [wasRecentlyCreated] => 
+            [attributes:protected] => Array
+                (
+                    [id] => 19
+                    [userid] => 6
+                    [orderid] => 13
+                    [packageid] => 3
+                    [server] => 3
+                    [regdate] => 2022-11-16
+                    [domain] => testdomain.com
+                    [paymentmethod] => paypal
+                    [qty] => 1
+                    [firstpaymentamount] => 0.00
+                    [amount] => 0.00
+                    [billingcycle] => Free Account
+                    [nextduedate] => 0000-00-00
+                    [nextinvoicedate] => 0000-00-00
+                    [termination_date] => 0000-00-00
+                    [completed_date] => 0000-00-00
+                    [domainstatus] => Pending
+                    [username] => testdoma
+                    [password] => vWCa5MPJOYPtklz2ZlNHD1XMZg23LRjBu003eGky
+                    [notes] => 
+                    [subscriptionid] => 
+                    [promoid] => 0
+                    [promocount] => 0
+                    [suspendreason] => 
+                    [overideautosuspend] => 0
+                    [overidesuspenduntil] => 0000-00-00
+                    [dedicatedip] => 
+                    [assignedips] => 
+                    [ns1] => 
+                    [ns2] => 
+                    [diskusage] => 0
+                    [disklimit] => 0
+                    [bwusage] => 0
+                    [bwlimit] => 0
+                    [lastupdate] => 0000-00-00 00:00:00
+                    [created_at] => 0000-00-00 00:00:00
+                    [updated_at] => 2022-11-16 15:44:08
+                )
+
+            [original:protected] => Array
+                (
+                    [id] => 19
+                    [userid] => 6
+                    [orderid] => 13
+                    [packageid] => 3
+                    [server] => 3
+                    [regdate] => 2022-11-16
+                    [domain] => testdomain.com
+                    [paymentmethod] => paypal
+                    [qty] => 1
+                    [firstpaymentamount] => 0.00
+                    [amount] => 0.00
+                    [billingcycle] => Free Account
+                    [nextduedate] => 0000-00-00
+                    [nextinvoicedate] => 0000-00-00
+                    [termination_date] => 0000-00-00
+                    [completed_date] => 0000-00-00
+                    [domainstatus] => Pending
+                    [username] => testdoma
+                    [password] => vWCa5MPJOYPtklz2ZlNHD1XMZg23LRjBu003eGky
+                    [notes] => 
+                    [subscriptionid] => 
+                    [promoid] => 0
+                    [promocount] => 0
+                    [suspendreason] => 
+                    [overideautosuspend] => 0
+                    [overidesuspenduntil] => 0000-00-00
+                    [dedicatedip] => 
+                    [assignedips] => 
+                    [ns1] => 
+                    [ns2] => 
+                    [diskusage] => 0
+                    [disklimit] => 0
+                    [bwusage] => 0
+                    [bwlimit] => 0
+                    [lastupdate] => 0000-00-00 00:00:00
+                    [created_at] => 0000-00-00 00:00:00
+                    [updated_at] => 2022-11-16 15:44:08
+                )
+
+            [changes:protected] => Array
+                (
+                )
+
+            [casts:protected] => Array
+                (
+                )
+
+            [classCastCache:protected] => Array
+                (
+                )
+
+            [dateFormat:protected] => 
+            [dispatchesEvents:protected] => Array
+                (
+                )
+
+            [observables:protected] => Array
+                (
+                )
+
+            [relations:protected] => Array
+                (
+                    [product] => WHMCS\Product\Product Object
+                        (
+                            [table:protected] => tblproducts
+                            [moduleField:protected] => servertype
+                            [columnMap:protected] => Array
+                                (
+                                    [productGroupId] => gid
+                                    [isHidden] => hidden
+                                    [welcomeEmailTemplateId] => welcomeemail
+                                    [stockControlEnabled] => stockcontrol
+                                    [quantityInStock] => qty
+                                    [proRataChargeDayOfCurrentMonth] => proratadate
+                                    [proRataChargeNextMonthAfterDay] => proratachargenextmonth
+                                    [paymentType] => paytype
+                                    [allowMultipleQuantities] => allowqty
+                                    [freeSubDomains] => subdomain
+                                    [module] => servertype
+                                    [serverGroupId] => servergroup
+                                    [moduleConfigOption1] => configoption1
+                                    [moduleConfigOption2] => configoption2
+                                    [moduleConfigOption3] => configoption3
+                                    [moduleConfigOption4] => configoption4
+                                    [moduleConfigOption5] => configoption5
+                                    [moduleConfigOption6] => configoption6
+                                    [moduleConfigOption7] => configoption7
+                                    [moduleConfigOption8] => configoption8
+                                    [moduleConfigOption9] => configoption9
+                                    [moduleConfigOption10] => configoption10
+                                    [moduleConfigOption11] => configoption11
+                                    [moduleConfigOption12] => configoption12
+                                    [moduleConfigOption13] => configoption13
+                                    [moduleConfigOption14] => configoption14
+                                    [moduleConfigOption15] => configoption15
+                                    [moduleConfigOption16] => configoption16
+                                    [moduleConfigOption17] => configoption17
+                                    [moduleConfigOption18] => configoption18
+                                    [moduleConfigOption19] => configoption19
+                                    [moduleConfigOption20] => configoption20
+                                    [moduleConfigOption21] => configoption21
+                                    [moduleConfigOption22] => configoption22
+                                    [moduleConfigOption23] => configoption23
+                                    [moduleConfigOption24] => configoption24
+                                    [recurringCycleLimit] => recurringcycles
+                                    [daysAfterSignUpUntilAutoTermination] => autoterminatedays
+                                    [autoTerminationEmailTemplateId] => autoterminateemail
+                                    [allowConfigOptionUpgradeDowngrade] => configoptionsupgrade
+                                    [upgradeEmailTemplateId] => upgradeemail
+                                    [enableOverageBillingAndUnits] => overagesenabled
+                                    [overageDiskLimit] => overagesdisklimit
+                                    [overageBandwidthLimit] => overagesbwlimit
+                                    [overageDiskPrice] => overagesdiskprice
+                                    [overageBandwidthPrice] => overagesbwprice
+                                    [applyTax] => tax
+                                    [affiliatePayoutOnceOnly] => affiliateonetime
+                                    [affiliatePaymentType] => affiliatepaytype
+                                    [affiliatePaymentAmount] => affiliatepayamount
+                                    [isRetired] => retired
+                                    [displayOrder] => order
+                                )
+
+                            [booleans:protected] => Array
+                                (
+                                    [0] => isHidden
+                                    [1] => showDomainOptions
+                                    [2] => stockControlEnabled
+                                    [3] => proRataBilling
+                                    [4] => allowConfigOptionUpgradeDowngrade
+                                    [5] => applyTax
+                                    [6] => affiliatePayoutOnceOnly
+                                    [7] => isRetired
+                                    [8] => isFeatured
+                                )
+
+                            [strings:protected] => Array
+                                (
+                                    [0] => description
+                                    [1] => autoSetup
+                                    [2] => module
+                                    [3] => moduleConfigOption1
+                                    [4] => moduleConfigOption2
+                                    [5] => moduleConfigOption3
+                                    [6] => moduleConfigOption4
+                                    [7] => moduleConfigOption5
+                                    [8] => moduleConfigOption6
+                                    [9] => moduleConfigOption7
+                                    [10] => moduleConfigOption8
+                                    [11] => moduleConfigOption9
+                                    [12] => moduleConfigOption10
+                                    [13] => moduleConfigOption11
+                                    [14] => moduleConfigOption12
+                                    [15] => moduleConfigOption13
+                                    [16] => moduleConfigOption14
+                                    [17] => moduleConfigOption15
+                                    [18] => moduleConfigOption16
+                                    [19] => moduleConfigOption17
+                                    [20] => moduleConfigOption18
+                                    [21] => moduleConfigOption19
+                                    [22] => moduleConfigOption20
+                                    [23] => moduleConfigOption21
+                                    [24] => moduleConfigOption22
+                                    [25] => moduleConfigOption23
+                                    [26] => moduleConfigOption24
+                                    [27] => tagline
+                                    [28] => shortDescription
+                                    [29] => color
+                                )
+
+                            [ints:protected] => Array
+                                (
+                                    [0] => welcomeEmailTemplateId
+                                    [1] => quantityInStock
+                                    [2] => proRataChargeDayOfCurrentMonth
+                                    [3] => proRataChargeNextMonthAfterDay
+                                    [4] => serverGroupId
+                                    [5] => displayOrder
+                                )
+
+                            [commaSeparated:protected] => Array
+                                (
+                                    [0] => freeSubDomains
+                                    [1] => freeDomainPaymentTerms
+                                    [2] => freeDomainTlds
+                                    [3] => enableOverageBillingAndUnits
+                                )
+
+                            [casts:protected] => Array
+                                (
+                                    [allowqty] => integer
+                                )
+
+                            [appends:protected] => Array
+                                (
+                                    [0] => formattedProductFeatures
+                                )
+
+                            [pricingCache:protected] => 
+                            [unique] => Array
+                                (
+                                )
+
+                            [guardedForUpdate] => Array
+                                (
+                                )
+
+                            [fillable:protected] => Array
+                                (
+                                )
+
+                            [semanticVersions:protected] => Array
+                                (
+                                )
+
+                            [characterSeparated:protected] => Array
+                                (
+                                )
+
+                            [rules:protected] => Array
+                                (
+                                )
+
+                            [errors:protected] => 
+                            [customValidationMessages:protected] => Array
+                                (
+                                )
+
+                            [connection:protected] => default
+                            [primaryKey:protected] => id
+                            [keyType:protected] => int
+                            [incrementing] => 1
+                            [with:protected] => Array
+                                (
+                                )
+
+                            [withCount:protected] => Array
+                                (
+                                )
+
+                            [perPage:protected] => 15
+                            [exists] => 1
+                            [wasRecentlyCreated] => 
+                            [attributes:protected] => Array
+                                (
+                                    [id] => 3
+                                    [type] => hostingaccount
+                                    [gid] => 2
+                                    [name] => TEST LARAVEL
+                                    [slug] => 
+                                    [description] => 
+                                    [hidden] => 1
+                                    [showdomainoptions] => 1
+                                    [welcomeemail] => 1
+                                    [stockcontrol] => 0
+                                    [qty] => 0
+                                    [proratabilling] => 0
+                                    [proratadate] => 0
+                                    [proratachargenextmonth] => 0
+                                    [paytype] => free
+                                    [allowqty] => 0
+                                    [subdomain] => 
+                                    [autosetup] => payment
+                                    [servertype] => instructinginteraction
+                                    [servergroup] => 0
+                                    [configoption1] => 
+                                    [configoption2] => 
+                                    [configoption3] => 
+                                    [configoption4] => 
+                                    [configoption5] => 
+                                    [configoption6] => 
+                                    [configoption7] => 
+                                    [configoption8] => 
+                                    [configoption9] => 
+                                    [configoption10] => 
+                                    [configoption11] => 
+                                    [configoption12] => 
+                                    [configoption13] => 
+                                    [configoption14] => 
+                                    [configoption15] => 
+                                    [configoption16] => 
+                                    [configoption17] => 
+                                    [configoption18] => 
+                                    [configoption19] => 
+                                    [configoption20] => 
+                                    [configoption21] => 
+                                    [configoption22] => 
+                                    [configoption23] => 
+                                    [configoption24] => 
+                                    [freedomain] => 
+                                    [freedomainpaymentterms] => 
+                                    [freedomaintlds] => 
+                                    [recurringcycles] => 0
+                                    [autoterminatedays] => 0
+                                    [autoterminateemail] => 0
+                                    [configoptionsupgrade] => 0
+                                    [billingcycleupgrade] => 
+                                    [upgradeemail] => 0
+                                    [overagesenabled] => 
+                                    [overagesdisklimit] => 0
+                                    [overagesbwlimit] => 0
+                                    [overagesdiskprice] => 0.0000
+                                    [overagesbwprice] => 0.0000
+                                    [tax] => 0
+                                    [affiliateonetime] => 0
+                                    [affiliatepaytype] => 
+                                    [affiliatepayamount] => 0.00
+                                    [order] => 1
+                                    [retired] => 0
+                                    [is_featured] => 0
+                                    [color] => #9abb3a
+                                    [tagline] => 
+                                    [short_description] => 
+                                    [created_at] => 2022-11-16 15:38:06
+                                    [updated_at] => 2022-11-16 15:38:12
+                                )
+
+                            [original:protected] => Array
+                                (
+                                    [id] => 3
+                                    [type] => hostingaccount
+                                    [gid] => 2
+                                    [name] => TEST LARAVEL
+                                    [slug] => 
+                                    [description] => 
+                                    [hidden] => 1
+                                    [showdomainoptions] => 1
+                                    [welcomeemail] => 1
+                                    [stockcontrol] => 0
+                                    [qty] => 0
+                                    [proratabilling] => 0
+                                    [proratadate] => 0
+                                    [proratachargenextmonth] => 0
+                                    [paytype] => free
+                                    [allowqty] => 0
+                                    [subdomain] => 
+                                    [autosetup] => payment
+                                    [servertype] => instructinginteraction
+                                    [servergroup] => 0
+                                    [configoption1] => 
+                                    [configoption2] => 
+                                    [configoption3] => 
+                                    [configoption4] => 
+                                    [configoption5] => 
+                                    [configoption6] => 
+                                    [configoption7] => 
+                                    [configoption8] => 
+                                    [configoption9] => 
+                                    [configoption10] => 
+                                    [configoption11] => 
+                                    [configoption12] => 
+                                    [configoption13] => 
+                                    [configoption14] => 
+                                    [configoption15] => 
+                                    [configoption16] => 
+                                    [configoption17] => 
+                                    [configoption18] => 
+                                    [configoption19] => 
+                                    [configoption20] => 
+                                    [configoption21] => 
+                                    [configoption22] => 
+                                    [configoption23] => 
+                                    [configoption24] => 
+                                    [freedomain] => 
+                                    [freedomainpaymentterms] => 
+                                    [freedomaintlds] => 
+                                    [recurringcycles] => 0
+                                    [autoterminatedays] => 0
+                                    [autoterminateemail] => 0
+                                    [configoptionsupgrade] => 0
+                                    [billingcycleupgrade] => 
+                                    [upgradeemail] => 0
+                                    [overagesenabled] => 
+                                    [overagesdisklimit] => 0
+                                    [overagesbwlimit] => 0
+                                    [overagesdiskprice] => 0.0000
+                                    [overagesbwprice] => 0.0000
+                                    [tax] => 0
+                                    [affiliateonetime] => 0
+                                    [affiliatepaytype] => 
+                                    [affiliatepayamount] => 0.00
+                                    [order] => 1
+                                    [retired] => 0
+                                    [is_featured] => 0
+                                    [color] => #9abb3a
+                                    [tagline] => 
+                                    [short_description] => 
+                                    [created_at] => 2022-11-16 15:38:06
+                                    [updated_at] => 2022-11-16 15:38:12
+                                )
+
+                            [changes:protected] => Array
+                                (
+                                )
+
+                            [classCastCache:protected] => Array
+                                (
+                                )
+
+                            [dates:protected] => Array
+                                (
+                                )
+
+                            [dateFormat:protected] => 
+                            [dispatchesEvents:protected] => Array
+                                (
+                                )
+
+                            [observables:protected] => Array
+                                (
+                                )
+
+                            [relations:protected] => Array
+                                (
+                                )
+
+                            [touches:protected] => Array
+                                (
+                                )
+
+                            [timestamps] => 1
+                            [hidden:protected] => Array
+                                (
+                                )
+
+                            [visible:protected] => Array
+                                (
+                                )
+
+                            [guarded:protected] => Array
+                                (
+                                    [0] => *
+                                )
+
+                            [field:protected] => configoption1
+                        )
+
+                    [client] => WHMCS\User\Client Object
+                        (
+                            [table:protected] => tblclients
+                            [columnMap:protected] => Array
+                                (
+                                    [passwordHash] => password
+                                    [twoFactorAuthModule] => authmodule
+                                    [twoFactorAuthData] => authdata
+                                    [currencyId] => currency
+                                    [defaultPaymentGateway] => defaultgateway
+                                    [overrideLateFee] => latefeeoveride
+                                    [overrideOverdueNotices] => overideduenotices
+                                    [disableAutomaticCreditCardProcessing] => disableautocc
+                                    [billingContactId] => billingcid
+                                    [creditCardType] => cardtype
+                                    [creditCardLastFourDigits] => cardlastfour
+                                    [creditCardExpiryDate] => expdate
+                                    [storedBankNameCrypt] => bankname
+                                    [storedBankTypeCrypt] => banktype
+                                    [storedBankCodeCrypt] => bankcode
+                                    [storedBankAccountCrypt] => bankacct
+                                    [paymentGatewayToken] => gatewayid
+                                    [lastLoginDate] => lastlogin
+                                    [lastLoginIp] => ip
+                                    [lastLoginHostname] => host
+                                    [passwordResetKey] => pwresetkey
+                                    [passwordResetKeyRequestDate] => pwresetexpiry
+                                    [passwordResetKeyExpiryDate] => pwresetexpiry
+                                )
+
+                            [timestamps] => 1
+                            [dates:protected] => Array
+                                (
+                                    [0] => lastLoginDate
+                                    [1] => passwordResetKeyRequestDate
+                                    [2] => passwordResetKeyExpiryDate
+                                )
+
+                            [booleans:protected] => Array
+                                (
+                                    [0] => taxExempt
+                                    [1] => overrideLateFee
+                                    [2] => overrideOverdueNotices
+                                    [3] => separateInvoices
+                                    [4] => disableAutomaticCreditCardProcessing
+                                    [5] => emailOptOut
+                                    [6] => marketingEmailsOptIn
+                                    [7] => overrideAutoClose
+                                    [8] => emailVerified
+                                )
+
+                            [casts:protected] => Array
+                                (
+                                    [email_preferences] => array
+                                )
+
+                            [unique] => Array
+                                (
+                                    [0] => email
+                                )
+
+                            [appends:protected] => Array
+                                (
+                                    [0] => fullName
+                                    [1] => displayName
+                                    [2] => countryName
+                                    [3] => groupName
+                                    [4] => currencyCode
+                                    [5] => displayNameFormatted
+                                )
+
+                            [fillable:protected] => Array
+                                (
+                                    [0] => lastlogin
+                                    [1] => ip
+                                    [2] => host
+                                    [3] => pwresetkey
+                                    [4] => pwresetexpiry
+                                )
+
+                            [hidden:protected] => Array
+                                (
+                                    [0] => password
+                                    [1] => authdata
+                                    [2] => securityqans
+                                    [3] => cardnum
+                                    [4] => startdate
+                                    [5] => expdate
+                                    [6] => issuenumber
+                                    [7] => bankname
+                                    [8] => banktype
+                                    [9] => bankcode
+                                    [10] => bankacct
+                                    [11] => pwresetkey
+                                    [12] => pwresetexpiry
+                                )
+
+                            [guardedForUpdate] => Array
+                                (
+                                )
+
+                            [strings:protected] => Array
+                                (
+                                )
+
+                            [ints:protected] => Array
+                                (
+                                )
+
+                            [semanticVersions:protected] => Array
+                                (
+                                )
+
+                            [commaSeparated:protected] => Array
+                                (
+                                )
+
+                            [characterSeparated:protected] => Array
+                                (
+                                )
+
+                            [rules:protected] => Array
+                                (
+                                )
+
+                            [errors:protected] => 
+                            [customValidationMessages:protected] => Array
+                                (
+                                )
+
+                            [connection:protected] => default
+                            [primaryKey:protected] => id
+                            [keyType:protected] => int
+                            [incrementing] => 1
+                            [with:protected] => Array
+                                (
+                                )
+
+                            [withCount:protected] => Array
+                                (
+                                )
+
+                            [perPage:protected] => 15
+                            [exists] => 1
+                            [wasRecentlyCreated] => 
+                            [attributes:protected] => Array
+                                (
+                                    [id] => 6
+                                    [uuid] => 7928e173-d3ed-4757-b805-880ee32d2be1
+                                    [firstname] => Matthew
+                                    [lastname] => F
+                                    [companyname] => 
+                                    [email] => matt@ftechsolutions.com
+                                    [address1] => 
+                                    [address2] => MY ADDRESS
+                                    [city] => CHICAGO
+                                    [state] => Illinois
+                                    [postcode] => 60606
+                                    [country] => US
+                                    [phonenumber] => +1.224-500-7914
+                                    [tax_id] => 
+                                    [password] => $2y$10$UXP7grqFXGP74KenRBUr5OpRIuvfvh92FESMNZwATvk2rXNV4HIhS
+                                    [authmodule] => 
+                                    [authdata] => 
+                                    [currency] => 1
+                                    [defaultgateway] => 
+                                    [credit] => 0.00
+                                    [taxexempt] => 0
+                                    [latefeeoveride] => 0
+                                    [overideduenotices] => 0
+                                    [separateinvoices] => 0
+                                    [disableautocc] => 0
+                                    [datecreated] => 2020-07-04
+                                    [notes] => 
+                                    [billingcid] => 0
+                                    [securityqid] => 0
+                                    [securityqans] => ud2ysGz12jNfmpIAnlR3e8Gxf2I=
+                                    [groupid] => 0
+                                    [cardtype] => 
+                                    [cardlastfour] => 
+                                    [cardnum] => 
+                                    [startdate] => 
+                                    [expdate] => 
+                                    [issuenumber] => 
+                                    [bankname] => 
+                                    [banktype] => 
+                                    [bankcode] => 
+                                    [bankacct] => 
+                                    [gatewayid] => 
+                                    [lastlogin] => 0000-00-00 00:00:00
+                                    [ip] => 69.47.101.172
+                                    [host] => d47-69-172-101.try.wideopenwest.com
+                                    [status] => Active
+                                    [language] => 
+                                    [pwresetkey] => 
+                                    [emailoptout] => 1
+                                    [marketing_emails_opt_in] => 0
+                                    [overrideautoclose] => 0
+                                    [allow_sso] => 1
+                                    [email_verified] => 0
+                                    [email_preferences] => 
+                                    [created_at] => 0000-00-00 00:00:00
+                                    [updated_at] => 0000-00-00 00:00:00
+                                    [pwresetexpiry] => 0000-00-00 00:00:00
+                                )
+
+                            [original:protected] => Array
+                                (
+                                    [id] => 6
+                                    [uuid] => 7928e173-d3ed-4757-b805-880ee32d2be1
+                                    [firstname] => Matthew
+                                    [lastname] => F
+                                    [companyname] => 
+                                    [email] => matt@ftechsolutions.com
+                                    [address1] => 
+                                    [address2] => MY ADDRESS
+                                    [city] => CHICAGO
+                                    [state] => Illinois
+                                    [postcode] => 60606
+                                    [country] => US
+                                    [phonenumber] => +1.224-500-7914
+                                    [tax_id] => 
+                                    [password] => $2y$10$UXP7grqFXGP74KenRBUr5OpRIuvfvh92FESMNZwATvk2rXNV4HIhS
+                                    [authmodule] => 
+                                    [authdata] => 
+                                    [currency] => 1
+                                    [defaultgateway] => 
+                                    [credit] => 0.00
+                                    [taxexempt] => 0
+                                    [latefeeoveride] => 0
+                                    [overideduenotices] => 0
+                                    [separateinvoices] => 0
+                                    [disableautocc] => 0
+                                    [datecreated] => 2020-07-04
+                                    [notes] => 
+                                    [billingcid] => 0
+                                    [securityqid] => 0
+                                    [securityqans] => ud2ysGz12jNfmpIAnlR3e8Gxf2I=
+                                    [groupid] => 0
+                                    [cardtype] => 
+                                    [cardlastfour] => 
+                                    [cardnum] => 
+                                    [startdate] => 
+                                    [expdate] => 
+                                    [issuenumber] => 
+                                    [bankname] => 
+                                    [banktype] => 
+                                    [bankcode] => 
+                                    [bankacct] => 
+                                    [gatewayid] => 
+                                    [lastlogin] => 0000-00-00 00:00:00
+                                    [ip] => 69.47.101.172
+                                    [host] => d47-69-172-101.try.wideopenwest.com
+                                    [status] => Active
+                                    [language] => 
+                                    [pwresetkey] => 
+                                    [emailoptout] => 1
+                                    [marketing_emails_opt_in] => 0
+                                    [overrideautoclose] => 0
+                                    [allow_sso] => 1
+                                    [email_verified] => 0
+                                    [email_preferences] => 
+                                    [created_at] => 0000-00-00 00:00:00
+                                    [updated_at] => 0000-00-00 00:00:00
+                                    [pwresetexpiry] => 0000-00-00 00:00:00
+                                )
+
+                            [changes:protected] => Array
+                                (
+                                )
+
+                            [classCastCache:protected] => Array
+                                (
+                                )
+
+                            [dateFormat:protected] => 
+                            [dispatchesEvents:protected] => Array
+                                (
+                                )
+
+                            [observables:protected] => Array
+                                (
+                                )
+
+                            [relations:protected] => Array
+                                (
+                                )
+
+                            [touches:protected] => Array
+                                (
+                                )
+
+                            [visible:protected] => Array
+                                (
+                                )
+
+                            [guarded:protected] => Array
+                                (
+                                    [0] => *
+                                )
+
+                        )
+
+                    [customFieldValues] => Illuminate\Database\Eloquent\Collection Object
+                        (
+                            [items:protected] => Array
+                                (
+                                )
+
+                        )
+
+                )
+
+            [touches:protected] => Array
+                (
+                )
+
+            [timestamps] => 1
+            [visible:protected] => Array
+                (
+                )
+
+            [guarded:protected] => Array
+                (
+                    [0] => *
+                )
+
+            [moduleInterface:protected] => 
+        )
+
+    [server] => 1
+    [serverip] => 
+    [serverhostname] => onboardingdemo.stuffsleuth.com
+    [serverusername] => admin@admin.com
+    [serverpassword] => password
+    [serveraccesshash] => 
+    [serversecure] => 1
+    [serverhttpprefix] => https
+    [serverport] => 1112
+    [clientsdetails] => Array
+        (
+            [userid] => 6
+            [client_id] => 6
+            [id] => 6
+            [owner_user_id] => 6
+            [uuid] => 7928e173-d3ed-4757-b805-880ee32d2be1
+            [firstname] => Matthew
+            [lastname] => F
+            [fullname] => Matthew F
+            [companyname] => 
+            [email] => matt@Ftechsolutions.com
+            [address1] => 
+            [address2] => MY ADDRESS
+            [city] => CHICAGO
+            [fullstate] => Illinois
+            [state] => IL
+            [postcode] => 60606
+            [countrycode] => US
+            [country] => US
+            [phonenumber] => 2245007914
+            [tax_id] => 
+            [email_preferences] => Array
+                (
+                    [general] => 1
+                    [invoice] => 1
+                    [support] => 1
+                    [product] => 1
+                    [domain] => 1
+                    [affiliate] => 1
+                )
+
+            [statecode] => IL
+            [countryname] => United States
+            [phonecc] => 1
+            [phonenumberformatted] => +1.2245007814
+            [telephoneNumber] => +1.2245007814
+            [billingcid] => 0
+            [notes] => 
+            [currency] => 1
+            [defaultgateway] => 
+            [cctype] => 
+            [cclastfour] => 
+            [gatewayid] => 
+            [groupid] => 0
+            [status] => Active
+            [credit] => 0.00
+            [taxexempt] => 
+            [latefeeoveride] => 
+            [overideduenotices] => 
+            [separateinvoices] => 
+            [disableautocc] => 
+            [emailoptout] => 1
+            [marketing_emails_opt_in] => 
+            [overrideautoclose] => 
+            [allowSingleSignOn] => 1
+            [email_verified] => 
+            [language] => 
+            [isOptedInToMarketingEmails] => 
+            [tax_state] => Illinois
+            [tax_countrycode] => US
+            [lastlogin] => No Login Logged
+        )
+
+    [action] => create
+)
+
+RESPONSE:
+
+#0 /home/account/public_html/modules/servers/instructinginteraction/lib/requests/login_request.php(32): original_api_call('/api/login', Array, Array, NULL)

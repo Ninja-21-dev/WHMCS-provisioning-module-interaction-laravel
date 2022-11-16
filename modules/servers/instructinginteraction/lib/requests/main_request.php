@@ -7,21 +7,21 @@ require_once __DIR__ . '/constants/api_const.php';
 
 function original_api_call($connection_url, $headers, $params, $request_method_type)
 {
-    global $INSTRUCTING_POST_REQUEST_METHOD, $INSTRUCTING_GET_REQUEST_METHOD, $INSTRUCTING_PUT_REQUEST_METHOD;
+//    global $INSTRUCTING_POST_REQUEST_METHOD, $INSTRUCTING_GET_REQUEST_METHOD, $INSTRUCTING_PUT_REQUEST_METHOD;
     // Call the API
     $ch = curl_init();
 
-    if($request_method_type == $INSTRUCTING_GET_REQUEST_METHOD)
+    if($request_method_type == InstructingConsts::$INSTRUCTING_GET_REQUEST_METHOD)
     {
         curl_setopt($ch, CURLOPT_URL, $connection_url . '?' . http_build_query($params));
     }
-    else if($request_method_type == $INSTRUCTING_POST_REQUEST_METHOD)
+    else if($request_method_type == InstructingConsts::$INSTRUCTING_POST_REQUEST_METHOD)
     {
         curl_setopt($ch, CURLOPT_URL, $connection_url);
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
     }
-    else if($request_method_type == $INSTRUCTING_PUT_REQUEST_METHOD)
+    else if($request_method_type == InstructingConsts::$INSTRUCTING_PUT_REQUEST_METHOD)
     {
         curl_setopt($ch, CURLOPT_URL, $connection_url);
 //        curl_setopt($ch, CURLOPT_PUT, 1);

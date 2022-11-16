@@ -10,8 +10,8 @@ require_once __DIR__ . '/main_request.php';
 function get_teams_api_call($domain_url,
                             $token)
 {
-    global $INSTRUCTING_URL_TEAM_MAIN_PATH, $INSTRUCTING_GET_REQUEST_METHOD;
-    $connection_url = $domain_url . $INSTRUCTING_URL_TEAM_MAIN_PATH;
+//    global $INSTRUCTING_URL_TEAM_MAIN_PATH, $INSTRUCTING_GET_REQUEST_METHOD;
+    $connection_url = $domain_url . InstructingConsts::$INSTRUCTING_URL_TEAM_MAIN_PATH;
 
     // Set post values
     $postfields = array();
@@ -23,11 +23,11 @@ function get_teams_api_call($domain_url,
     );
 
     // Get decoded http response
-    $jsonData = original_api_call($connection_url, $postheaders, $postfields, $INSTRUCTING_GET_REQUEST_METHOD);
+    $jsonData = original_api_call($connection_url, $postheaders, $postfields, InstructingConsts::$INSTRUCTING_GET_REQUEST_METHOD);
 
     // Print array structure for inspection
-    global $INSTRUCTING_DATA_JSON_KEY;
-    print(json_encode($jsonData[$INSTRUCTING_DATA_JSON_KEY]) . PHP_EOL);
+//    global $INSTRUCTING_DATA_JSON_KEY;
+    print(json_encode($jsonData[InstructingConsts::$INSTRUCTING_DATA_JSON_KEY]) . PHP_EOL);
 
     return $jsonData[$INSTRUCTING_DATA_JSON_KEY];
 }
@@ -38,8 +38,8 @@ function create_team_api_call($domain_url,
                               $token,
                               array $params)
 {
-    global $INSTRUCTING_URL_TEAM_MAIN_PATH, $INSTRUCTING_POST_REQUEST_METHOD;
-    $connection_url = $domain_url . $INSTRUCTING_URL_TEAM_MAIN_PATH;
+//    global $INSTRUCTING_URL_TEAM_MAIN_PATH, $INSTRUCTING_POST_REQUEST_METHOD;
+    $connection_url = $domain_url . InstructingConsts::$INSTRUCTING_URL_TEAM_MAIN_PATH;
 
     // Set post values
     $create_info = $params;
@@ -51,7 +51,7 @@ function create_team_api_call($domain_url,
     );
  
     // Get decoded http response
-    $jsonData = original_api_call($connection_url, $postheaders, $create_info, $INSTRUCTING_POST_REQUEST_METHOD);
+    $jsonData = original_api_call($connection_url, $postheaders, $create_info, InstructingConsts::$INSTRUCTING_POST_REQUEST_METHOD);
 
     // Print array structure for inspection
     print(json_encode($jsonData) . PHP_EOL);
@@ -64,9 +64,9 @@ function update_team_api_call($domain_url,
                               $token,
                               array $params)
 {
-    global $INSTRUCTING_URL_TEAM_MAIN_PATH, $INSTRUCTING_PUT_REQUEST_METHOD, $INSTRUCTING_TEAM_DB_ID;
+//    global $INSTRUCTING_URL_TEAM_MAIN_PATH, $INSTRUCTING_PUT_REQUEST_METHOD, $INSTRUCTING_TEAM_DB_ID;
 
-    $connection_url = $domain_url . $INSTRUCTING_URL_TEAM_MAIN_PATH . '/' . $params[$INSTRUCTING_TEAM_DB_ID];
+    $connection_url = $domain_url . InstructingConsts::$INSTRUCTING_URL_TEAM_MAIN_PATH . '/' . $params[InstructingConsts::$INSTRUCTING_TEAM_DB_ID];
 
     // Set Updated User Info
     $update_info = $params;
@@ -78,7 +78,7 @@ function update_team_api_call($domain_url,
     );
 
     // Get decoded http response
-    $jsonData = original_api_call($connection_url, $httpheaders, $update_info, $INSTRUCTING_PUT_REQUEST_METHOD);
+    $jsonData = original_api_call($connection_url, $httpheaders, $update_info, InstructingConsts::$INSTRUCTING_PUT_REQUEST_METHOD);
 
     // Print array structure for inspection
     print(json_encode($jsonData) . PHP_EOL);

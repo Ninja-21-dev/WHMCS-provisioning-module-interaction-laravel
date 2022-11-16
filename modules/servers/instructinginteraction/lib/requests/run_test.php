@@ -8,10 +8,10 @@ require_once __DIR__ . '/login_request.php';
 require_once __DIR__ . '/user_operation_request.php';
 require_once __DIR__ . '/team_operation_request.php';
 
-global $INSTRUCTING_BASE_URL, $INSTRUCTING_ADMIN_EMAIL, $INSTRUCTING_ADMIN_PWD;
-$base_url = $INSTRUCTING_BASE_URL;
-$test_email = $INSTRUCTING_ADMIN_EMAIL;
-$test_pwd = $INSTRUCTING_ADMIN_PWD;
+//global $INSTRUCTING_BASE_URL, $INSTRUCTING_ADMIN_EMAIL, $INSTRUCTING_ADMIN_PWD;
+$base_url = InstructingConsts::$INSTRUCTING_BASE_URL;
+$test_email = InstructingConsts::$INSTRUCTING_ADMIN_EMAIL;
+$test_pwd = InstructingConsts::$INSTRUCTING_ADMIN_PWD;
 
 // get token
 $token = login_api_call($base_url, $test_email, $test_pwd);
@@ -19,11 +19,11 @@ $token = login_api_call($base_url, $test_email, $test_pwd);
 // mock data
 $test_user = "test_user_4";
 $test_fields = array(
-    $INSTRUCTING_USER_DB_EMAIL => $test_user . "@gamil.com",
-    $INSTRUCTING_USER_DB_NAME => $test_user,
-    $INSTRUCTING_USER_DB_PWD => $test_user,
-    $INSTRUCTING_USER_DB_STATUS => "status",
-    $INSTRUCTING_USER_DB_ROLES => array(1, 2), //[1, 2]
+    InstructingConsts::$INSTRUCTING_USER_DB_EMAIL => $test_user . "@gamil.com",
+    InstructingConsts::$INSTRUCTING_USER_DB_NAME => $test_user,
+    InstructingConsts::$INSTRUCTING_USER_DB_PWD => $test_user,
+    InstructingConsts::$INSTRUCTING_USER_DB_STATUS => "status",
+    InstructingConsts::$INSTRUCTING_USER_DB_ROLES => array(1, 2), //[1, 2]
 );
 
 $new_user = create_user_api_call(
@@ -40,7 +40,7 @@ $users = get_users_api_call(
 //$user_count = count($users);
 //$last_user = $users[$user_codunt - 1];
 $last_user = end($users);
-$last_user[$INSTRUCTING_USER_DB_STATUS] = 'updated aastatus';
+$last_user[InstructingConsts::$INSTRUCTING_USER_DB_STATUS] = 'updated aastatus';
 //$last_user[$INSTRUCTING_USER_DB_ROLES] = array(1,2);
 
 print("last user" . PHP_EOL);
