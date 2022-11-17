@@ -10,7 +10,6 @@ require_once __DIR__ . '/main_request.php';
 function get_teams_api_call($domain_url,
                             $token)
 {
-//    global $INSTRUCTING_URL_TEAM_MAIN_PATH, $INSTRUCTING_GET_REQUEST_METHOD;
     $connection_url = $domain_url . InstructingConsts::$INSTRUCTING_URL_TEAM_MAIN_PATH;
 
     // Set post values
@@ -26,10 +25,9 @@ function get_teams_api_call($domain_url,
     $jsonData = original_api_call($connection_url, $postheaders, $postfields, InstructingConsts::$INSTRUCTING_GET_REQUEST_METHOD);
 
     // Print array structure for inspection
-//    global $INSTRUCTING_DATA_JSON_KEY;
     print(json_encode($jsonData[InstructingConsts::$INSTRUCTING_DATA_JSON_KEY]) . PHP_EOL);
 
-    return $jsonData[$INSTRUCTING_DATA_JSON_KEY];
+    return $jsonData[InstructingConsts::$INSTRUCTING_DATA_JSON_KEY];
 }
 
 
@@ -38,7 +36,6 @@ function create_team_api_call($domain_url,
                               $token,
                               array $params)
 {
-//    global $INSTRUCTING_URL_TEAM_MAIN_PATH, $INSTRUCTING_POST_REQUEST_METHOD;
     $connection_url = $domain_url . InstructingConsts::$INSTRUCTING_URL_TEAM_MAIN_PATH;
 
     // Set post values
@@ -64,8 +61,6 @@ function update_team_api_call($domain_url,
                               $token,
                               array $params)
 {
-//    global $INSTRUCTING_URL_TEAM_MAIN_PATH, $INSTRUCTING_PUT_REQUEST_METHOD, $INSTRUCTING_TEAM_DB_ID;
-
     $connection_url = $domain_url . InstructingConsts::$INSTRUCTING_URL_TEAM_MAIN_PATH . '/' . $params[InstructingConsts::$INSTRUCTING_TEAM_DB_ID];
 
     // Set Updated User Info

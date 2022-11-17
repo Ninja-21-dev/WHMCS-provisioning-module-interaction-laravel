@@ -8,7 +8,6 @@ require_once __DIR__ . '/login_request.php';
 require_once __DIR__ . '/user_operation_request.php';
 require_once __DIR__ . '/team_operation_request.php';
 
-//global $INSTRUCTING_BASE_URL, $INSTRUCTING_ADMIN_EMAIL, $INSTRUCTING_ADMIN_PWD;
 $base_url = InstructingConsts::$INSTRUCTING_BASE_URL;
 $test_email = InstructingConsts::$INSTRUCTING_ADMIN_EMAIL;
 $test_pwd = InstructingConsts::$INSTRUCTING_ADMIN_PWD;

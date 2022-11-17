@@ -11,7 +11,6 @@ require_once __DIR__ . '/main_request.php';
 function get_users_api_call($domain_url,
                             $token)
 {
-//    global $INSTRUCTING_GET_REQUEST_METHOD, $INSTRUCTING_URL_USER_MAIN_PATH;
     $connection_url = $domain_url . InstructingConsts::$INSTRUCTING_URL_USER_MAIN_PATH;
 
     // Set post values
@@ -27,7 +26,6 @@ function get_users_api_call($domain_url,
     $jsonData = original_api_call($connection_url, $postheaders, $postfields, InstructingConsts::$INSTRUCTING_GET_REQUEST_METHOD);
 
     // Print array structure for inspection
-//    global $INSTRUCTING_DATA_JSON_KEY;
     print(json_encode($jsonData[InstructingConsts::$INSTRUCTING_DATA_JSON_KEY]) . PHP_EOL);
 
     return $jsonData[InstructingConsts::$INSTRUCTING_DATA_JSON_KEY];
@@ -39,7 +37,6 @@ function create_user_api_call($domain_url,
                               $token,
                               array $params)
 {
-//    global $INSTRUCTING_URL_USER_MAIN_PATH;
     $connection_url = $domain_url . InstructingConsts::$INSTRUCTING_URL_USER_MAIN_PATH;
 
     // Set post values
@@ -51,7 +48,6 @@ function create_user_api_call($domain_url,
         'Authorization:Bearer ' . $token
     );
 
-//    global $INSTRUCTING_POST_REQUEST_METHOD;
     // Get decoded http response
     $jsonData = original_api_call($connection_url, $postheaders, $create_info, InstructingConsts::$INSTRUCTING_POST_REQUEST_METHOD);
 
@@ -66,13 +62,12 @@ function update_user_api_call($domain_url,
                               $token,
                               array $params)
 {
-//    global $INSTRUCTING_URL_USER_MAIN_PATH, $INSTRUCTING_USER_DB_ID, $INSTRUCTING_USER_DB_ROLES, $INSTRUCTING_ROLE_DB_ID;
     $connection_url = $domain_url . InstructingConsts::$INSTRUCTING_URL_USER_MAIN_PATH . '/' . $params[InstructingConsts::$INSTRUCTING_USER_DB_ID];
 
     $user_ids = array ();
 //    $id_count = 0;
     foreach($params[InstructingConsts::$INSTRUCTING_USER_DB_ROLES] as $user_role){
-//        $user_ids.array_push(array($user_role[$INSTRUCTING_ROLE_DB_ID]));
+//        $user_ids.array_push(array($user_role[InstructingConsts::$INSTRUCTING_ROLE_DB_ID]));
         $user_ids[] = $user_role[InstructingConsts::$INSTRUCTING_ROLE_DB_ID];
     }
     print(json_encode($user_ids));
@@ -88,7 +83,6 @@ function update_user_api_call($domain_url,
         'Authorization:Bearer ' . $token
     );
 
-//    global $INSTRUCTING_PUT_REQUEST_METHOD;
     // Get decoded http response
     $jsonData = original_api_call($connection_url, $httpheaders, $update_info, InstructingConsts::$INSTRUCTING_PUT_REQUEST_METHOD);
 

@@ -27,7 +27,6 @@ function login_api_call($domain_url,
         'Accept: Application/json'
     );
 
-//    global $INSTRUCTING_POST_REQUEST_METHOD;
     // Get decoded http response
     $jsonData = original_api_call($connection_url, $postheaders, $postfields, InstructingConsts::$INSTRUCTING_POST_REQUEST_METHOD);
 

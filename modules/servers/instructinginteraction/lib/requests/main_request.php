@@ -7,7 +7,6 @@ require_once __DIR__ . '/constants/api_const.php';
 
 function original_api_call($connection_url, $headers, $params, $request_method_type)
 {
-//    global $INSTRUCTING_POST_REQUEST_METHOD, $INSTRUCTING_GET_REQUEST_METHOD, $INSTRUCTING_PUT_REQUEST_METHOD;
     // Call the API
     $ch = curl_init();
 
