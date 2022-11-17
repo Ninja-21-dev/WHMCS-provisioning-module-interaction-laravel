@@ -54,7 +54,7 @@ function create_user_api_call($domain_url,
     // Print array structure for inspection
     print(json_encode($jsonData) . PHP_EOL);
 
-    return $jsonData;
+    return $jsonData[InstructingConsts::$INSTRUCTING_DATA_JSON_KEY];
 }
 
 // API call to update a user
@@ -89,5 +89,5 @@ function update_user_api_call($domain_url,
     // Print array structure for inspection
     print(json_encode($jsonData) . PHP_EOL);
 
-    return $jsonData;
+    return $jsonData[InstructingConsts::$INSTRUCTING_DATA_JSON_KEY];
 }
