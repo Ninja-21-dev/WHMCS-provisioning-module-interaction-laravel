@@ -53,7 +53,7 @@ require_once __DIR__ . '/lib/loader.php';
 function instructinginteraction_MetaData()
 {
     return array(
-        'DisplayName' => 'Demo Provisioning Module',
+        'DisplayName' => 'Instructing Interaction Module',
         'APIVersion' => '1.1', // Use API Version 1.1
         'RequiresServer' => true, // Set true if module requires a server to work
         'DefaultNonSSLPort' => '1111', // Default Non-SSL Connection Port
@@ -138,11 +138,11 @@ function instructinginteraction_ConfigOptions()
         ),
 
         //Enable Simple Configuration Mode for this module
-        'Simple Mode Field' => array(
-            'Type' => 'text',
-            'Size' => '25',
-            'SimpleMode' => true,
-        ),
+        // 'Simple Mode Field' => array(
+        //     'Type' => 'text',
+        //     'Size' => '25',
+        //     'SimpleMode' => true,
+        // ),
 
         //Enable Advanced Configuration Mode for this module
         'Advanced Mode Field' => [
@@ -170,6 +170,14 @@ function instructinginteraction_ConfigOptions()
  */
 function instructinginteraction_CreateAccount(array $params)
 {
+    //  logModuleCall(
+    //         'instructinginteraction',
+    //         __FUNCTION__,
+    //         $params,
+    //         "start account creation service is created",
+    //         "Service is being created."
+    //     );
+    // return "success";
     try {
         // Call the service's provisioning function, using the values provided
         // by WHMCS in `$params`.
@@ -184,7 +192,7 @@ function instructinginteraction_CreateAccount(array $params)
         //     'configoption1' => 'The amount of disk space to provision',
         //     'configoption2' => 'The new services secret key',
         //     'configoption3' => 'Whether or not to enable FTP',
-        //     ...
+        //     ...php
         // )
         // ```
 
@@ -194,13 +202,35 @@ function instructinginteraction_CreateAccount(array $params)
             __FUNCTION__,
             $params,
             "Get token",
-            "Token"
+            "Token: " . json_encode($token)
         );
 
         $user_email = $params["clientsdetails"]["email"];
         $user_str = explode('@', $user_email);
         $user_name = $user_str[0];
         $user_pwd = randomPassword();
+         logModuleCall(
+            'instructinginteraction',
+            __FUNCTION__,
+            $params,
+            "Create an user when service is created",
+            "User password: " . $user_pwd
+        );
+        logModuleCall(
+            'instructinginteraction',
+            __FUNCTION__,
+            $params,
+            "Create an user when service is created",
+            "User name: " . $user_name
+        );
+         logModuleCall(
+            'instructinginteraction',
+            __FUNCTION__,
+            $params,
+            "Create an user when service is created",
+            "User email: " . $user_email
+        );
+       
         $user_params = array(
             InstructingConsts::$INSTRUCTING_USER_DB_EMAIL => $user_email,
             InstructingConsts::$INSTRUCTING_USER_DB_NAME => $user_name,
@@ -209,30 +239,59 @@ function instructinginteraction_CreateAccount(array $params)
             InstructingConsts::$INSTRUCTING_USER_DB_ROLES => array(1, 2), //[1, 2]
         );
 
-        $user = create_user_api_call(InstructingConsts::$INSTRUCTING_BASE_URL, $token, $user_params);
+        $user_created = create_user_api_call(InstructingConsts::$INSTRUCTING_BASE_URL, $token, $user_params);
         logModuleCall(
             'instructinginteraction',
             __FUNCTION__,
             $params,
             "Create an user when service is created",
-            "Create an user"
+            "User_created: " . json_encode($user_created)
         );
 
-        $team_params = array(
-            InstructingConsts::$INSTRUCTING_TEAM_DB_OWNER_ID => $user[InstructingConsts::$INSTRUCTING_USER_DB_ID],
-            InstructingConsts::$INSTRUCTING_TEAM_DB_OWNER => $user[InstructingConsts::$INSTRUCTING_USER_DB_NAME],
-            InstructingConsts::$INSTRUCTING_TEAM_DB_STATUS => InstructingConsts::$INSTRUCTING_STATUS_ACTIVE,
-            InstructingConsts::$INSTRUCTING_TEAM_DB_NAME => params["domain"]
-        );
-
-        create_team_api_call(InstructingConsts::$INSTRUCTING_BASE_URL, $token, $team_params);
-        logModuleCall(
-            'instructinginteraction',
-            __FUNCTION__,
-            $params,
-            "Create a team when service is created",
-            "Create a team"
-        );
+        if ( $user_created[InstructingConsts::$INSTRUCTING_USER_DB_ID] != NULL && $user_created[InstructingConsts::$INSTRUCTING_USER_DB_ID] != "")
+        {
+            logModuleCall(
+                'instructinginteraction',
+                __FUNCTION__,
+                $params,
+                "Create an user when service is created",
+                "Created User: " . json_encode($user_created)
+            );
+            $team_params = array(
+                InstructingConsts::$INSTRUCTING_TEAM_DB_OWNER_ID => $user_created[InstructingConsts::$INSTRUCTING_USER_DB_ID],
+                InstructingConsts::$INSTRUCTING_TEAM_DB_OWNER => $user_created[InstructingConsts::$INSTRUCTING_USER_DB_NAME],
+                InstructingConsts::$INSTRUCTING_TEAM_DB_STATUS => InstructingConsts::$INSTRUCTING_STATUS_ACTIVE,
+                InstructingConsts::$INSTRUCTING_TEAM_DB_NAME => $params["domain"]
+            );
+    
+            $team_created = create_team_api_call(InstructingConsts::$INSTRUCTING_BASE_URL, $token, $team_params);
+            logModuleCall(
+                'instructinginteraction',
+                __FUNCTION__,
+                $params,
+                "Create a team when service is created",
+                "Created team: " . json_encode($team_created)
+            );
+                logModuleCall(
+                'instructinginteraction',
+                __FUNCTION__,
+                $params,
+                "Success create",
+                "Create an account successfully"
+            );
+        }
+        else
+        {
+            logModuleCall(
+                'instructinginteraction',
+                __FUNCTION__,
+                $params,
+                "Create an user when service is created",
+                "User creation error: " . json_encode($user_created)
+            );
+            
+            // return json_encode($user_created);
+        }
 
     } catch (Exception $e) {
         // Record the error in WHMCS's module log.
@@ -246,7 +305,7 @@ function instructinginteraction_CreateAccount(array $params)
 
         return $e->getMessage();
     }
-
+        
     return 'success';
 }
 
@@ -265,6 +324,8 @@ function instructinginteraction_CreateAccount(array $params)
  */
 function instructinginteraction_SuspendAccount(array $params)
 {
+    // return "success";
+    
     try {
         // Call the service's suspend function, using the values provided by
         // WHMCS in `$params`.
@@ -275,7 +336,7 @@ function instructinginteraction_SuspendAccount(array $params)
             __FUNCTION__,
             $params,
             "Get token",
-            "Token"
+            json_encode($token)
         );
 
         $users = get_users_api_call(InstructingConsts::$INSTRUCTING_BASE_URL, $token);
@@ -284,22 +345,36 @@ function instructinginteraction_SuspendAccount(array $params)
             __FUNCTION__,
             $params,
             "Get all users from laravel site",
-            "Get all users"
+            "users: " . json_encode($users)
+        );
+        logModuleCall(
+            'instructinginteraction',
+            __FUNCTION__,
+            $params,
+            "paramete",
+            "param: " . $params["clientsdetails"]["email"]
         );
 
         foreach($users as $user)
         {
-            if( $user[InstructingConsts::$INSTRUCTING_USER_DB_EMAIL] == $params["clientsdetails"]["email"] )
+            logModuleCall(
+                    'instructinginteraction',
+                    __FUNCTION__,
+                    $params,
+                    "After updating user",
+                    "user: " . json_encode($user[InstructingConsts::$INSTRUCTING_USER_DB_EMAIL])
+                );
+            if( strcmp(strtolower($user[InstructingConsts::$INSTRUCTING_USER_DB_EMAIL]), strtolower($params["clientsdetails"]["email"])) == 0 )
             {
                 $user_params = $user;
                 $user_params[InstructingConsts::$INSTRUCTING_USER_DB_STATUS] = InstructingConsts::$INSTRUCTING_STATUS_INACTIVE;
-                $updated_user = update_user_api_call(InstructingConsts::$INSTRUCTING_BASE_URL, $token, $params);
+                $updated_user = update_user_api_call(InstructingConsts::$INSTRUCTING_BASE_URL, $token, $user_params);
                 logModuleCall(
                     'instructinginteraction',
                     __FUNCTION__,
                     $params,
                     "After updating user",
-                    json_encode($updated_user)
+                    "update :" . json_encode($updated_user)
                 );
             }
         }

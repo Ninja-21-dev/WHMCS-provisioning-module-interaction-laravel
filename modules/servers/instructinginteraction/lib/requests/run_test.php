@@ -71,7 +71,7 @@ print("token" . PHP_EOL);
 print(json_encode($token) . PHP_EOL);
 
 
-$user_email = "real.testuser4@gmail.com";
+$user_email = "real.testuser42@gmail.com";
 $user_str = explode('@', $user_email);
 $user_name = "real test";
 $user_pwd = randomPassword();
@@ -83,9 +83,9 @@ $user_params = array(
     InstructingConsts::$INSTRUCTING_USER_DB_ROLES => array(1, 2), //[1, 2]
 );
 //
-$user = create_user_api_call(InstructingConsts::$INSTRUCTING_BASE_URL, $token, $user_params);
+$user_created = create_user_api_call(InstructingConsts::$INSTRUCTING_BASE_URL, $token, $user_params);
 print("user" . PHP_EOL);
-print(json_encode($user) . PHP_EOL);
+print(json_encode($user_created) . PHP_EOL);
 //logModuleCall(
 //    'instructinginteraction',
 //    __FUNCTION__,
@@ -95,8 +95,8 @@ print(json_encode($user) . PHP_EOL);
 //);
 //
 $team_params = array(
-    InstructingConsts::$INSTRUCTING_TEAM_DB_OWNER_ID => $user[InstructingConsts::$INSTRUCTING_USER_DB_ID],
-    InstructingConsts::$INSTRUCTING_TEAM_DB_OWNER => $user[InstructingConsts::$INSTRUCTING_USER_DB_NAME],
+    InstructingConsts::$INSTRUCTING_TEAM_DB_OWNER_ID => $user_created[InstructingConsts::$INSTRUCTING_USER_DB_ID],
+    InstructingConsts::$INSTRUCTING_TEAM_DB_OWNER => $user_created[InstructingConsts::$INSTRUCTING_USER_DB_NAME],
     InstructingConsts::$INSTRUCTING_TEAM_DB_STATUS => InstructingConsts::$INSTRUCTING_STATUS_ACTIVE,
     InstructingConsts::$INSTRUCTING_TEAM_DB_NAME => "domain"
 );
